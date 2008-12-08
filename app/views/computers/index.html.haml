@@ -1,0 +1,13 @@
+%h1
+  Computers controller, index action
+
+%table
+  %tr
+  - for computer in @computers
+    %tr
+      %td
+        = link_to 'Show', url(:computer, computer)
+      %td
+        = link_to 'Edit', url(:edit_computer,  computer)
+
+= link_to 'New', url(:new_computer)

@@ -1,0 +1,22 @@
+!!! Strict
+%html{ html_attrs("en_us") }
+  %head
+    %title
+      High Guard Ship Generator ::
+      = @title
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
+    %link{ :href => "/stylesheets/merbguard.css", :rel => "stylesheet", :media => "screen", :type => "text/css", :charset => "utf-8" }
+    %script{ :src => '/javascripts/jquery.js' }
+    %script{ :src => '/javascripts/jquery.livequery.min.js' }
+    %script{ :src => '/javascripts/jquery.form.js' }
+    %script{ :src => '/javascripts/site.js' }
+  %body
+    .container
+      #content
+        - if !message[:notice].nil?
+          .notice
+            = message[:notice]
+        - if !message[:error].nil?
+          .error
+            = message[:error]   
+        = catch_content :for_layout

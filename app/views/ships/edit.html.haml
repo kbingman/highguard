@@ -1,0 +1,11 @@
+%h1
+  Ships controller, edit action
+  
+= error_messages_for @ship
+#ship 
+  #target
+    = partial("form")
+  
+= link_to 'Show', url(:ship, @ship)
+|
+= link_to 'Back', url(:ships)

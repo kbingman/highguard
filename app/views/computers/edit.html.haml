@@ -1,0 +1,15 @@
+%h1
+  Computers controller, edit action
+
+= error_messages_for @computer
+
+= form_for(@computer, :action => url(:computer, @computer)) do
+
+  #target
+    = partial('form')
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:computer, @computer)
+|
+= link_to 'Back', url(:computers)

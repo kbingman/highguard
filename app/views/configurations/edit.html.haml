@@ -1,0 +1,15 @@
+%h1
+  Configurations controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/configurations/edit.html.erb
+= error_messages_for @configuration
+
+= form_for(@configuration, :action => url(:configuration, @configuration)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:configuration, @configuration)
+|
+= link_to 'Back', url(:configurations)

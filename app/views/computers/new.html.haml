@@ -1,0 +1,13 @@
+%h1 Computers controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/computers/new.html.erb
+
+= error_messages_for @computer
+
+= form_for(@computer, :action => url(:computers) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:computers)

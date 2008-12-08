@@ -1,0 +1,10 @@
+%h1 New Ship
+#nav
+  = link_to 'Back', url(:ships)
+
+= error_messages_for :ship
+
+= form_for(@ship, :action => url(:ships) ) do
+  = partial("form")
+  %p
+    = submit "Create"
