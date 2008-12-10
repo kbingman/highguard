@@ -1,5 +1,5 @@
 // add Accept:text/javascript header to jQuery ajax requests
-$.ajaxSetup({'beforeSend':function(xhr){xhr.setRequestHeader("Accept","text/javascript")}})
+// $.ajaxSetup({'beforeSend':function(xhr){xhr.setRequestHeader("Accept","text/javascript")}})
 
 $(document).ready(function(){
   // var $form = $('#ship form');

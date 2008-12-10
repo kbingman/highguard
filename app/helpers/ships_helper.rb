@@ -52,11 +52,11 @@ module Merb
     def power_select(n)
       result = ""
       n.times do |i|
-        thrust = @ship.thrust ? @ship.thrust : 0
-        unless i + 1 < thrust 
+        # thrust = @ship.thrust ? @ship.thrust : 0
+        # unless i + 1 < thrust 
           selected = (@ship.power == i + 1) ? ' selected="selected"':''
           result = result + "<option#{selected}>#{i + 1}</option>\n"
-        end
+        # end
       end
       result
     end

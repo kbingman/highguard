@@ -16,7 +16,7 @@ class Ship
   property :created_at,     DateTime
   property :updated_at,     DateTime
   
-  # belongs_to :configuration
+  belongs_to :configuration
   # belongs_to :computer
   
   validates_present :name
@@ -28,12 +28,16 @@ class Ship
     max
   end
   
-  def jumpdrive_tonnage
+  def jump_tonnage
     jumpdrive ? (jumpdrive + 1) * 0.01 * tonnage : 0
   end
   
   def jump_fuel
     jumpdrive ? jumpdrive * 0.1 * tonnage : 0
+  end
+  
+  def jump_price
+    jumpdrive ? 4 * jump_tonnage : 0
   end
   
   def max_thrust
@@ -49,6 +53,15 @@ class Ship
     thrust ? ((thrust * 3)-1) * 0.01 * tonnage : 0
   end
   
+  def thrust_price
+    case
+      when thrust == 1 : modifier = 1.5
+      when thrust == 2 : modifier = 0.7
+      when thrust >  2 : modifier = 0.5
+    end
+    modifier ? modifier * thrust_tonnage : 0
+  end
+  
   def powerplant_tonnage
     case 
       when tech_level == 7 || tech_level == 8 : percentage = 0.04
@@ -57,6 +70,10 @@ class Ship
       when tech_level == 15 : percentage = 0.01
     end
     power ? (power * percentage * tonnage) : 0
+  end
+  
+  def powerplant_price
+    power ? 4 * powerplant_tonnage : 0
   end
   
   def powerplant_fuel
@@ -78,6 +95,10 @@ class Ship
   
   def ep
     power ? (0.01 * tonnage * power) : 0
+  end
+  
+  def hull_price
+    tonnage * self.configuration.modifier * 0.1
   end
   
   def subtotal_tonnage

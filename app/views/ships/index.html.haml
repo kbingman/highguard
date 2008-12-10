@@ -1,16 +1,13 @@
 %h1
   Ships controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/ships/index.html.erb
+
 %table
   %tr
-  - for ship in @ships
+  - @ships.each do |ship|
     %tr
       %td
-        = link_to ship.name, url(:ship, ship)
+        = link_to ship.name, url(:edit_ship,  ship)
       %td
-        = link_to 'Edit', url(:edit_ship,  ship)
+        = link_to 'Show', url(:ship,  ship)
 
 = link_to 'New', url(:new_ship)

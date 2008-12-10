@@ -1,40 +1,10 @@
 = form_for(@ship, :action => url(:ship, @ship)) do
-  %p
-    %label Name
-    = text_field :name
-  %p
-    %label Tech Level
-    %select{ :name => "ship[tech_level]" }
-      = tech_level_select
-    %span
-      = @ship.tech_level
-  %p
-    %label Tonnage
-    = text_field :tonnage
-    %span
-      = @ship.tonnage
-  %p
-    %label Power
-    %select{ :name => "ship[power]" }
-      = power_select(8)
-    %span
-      = @ship.power
-  %p
-    %label{ :for => 'ship_jumpdrive' } Jump Drive:
-    %select{ :name => "ship[jumpdrive]" }
-      = drive_select('jumpdrive')
-    %span
-      = @ship.jumpdrive
-  %p    
-    %label Maneuver Drive:
-    %select{ :name => "ship[thrust]", :class => "input"}
-      = drive_select('thrust')
-    %span
-      = @ship.thrust
-  %p
-    %label Staterooms
-    = text_field :staterooms
+  %table
+    = partial :form, :format => :html
+    %tr
+      %td
+        %label &nbsp;
+        = submit "Update"
+
+  
     
-  %p
-    %label &nbsp;
-    = submit "Update"

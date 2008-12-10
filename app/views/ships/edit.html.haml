@@ -4,7 +4,15 @@
 = error_messages_for @ship
 #ship 
   #target
-    = partial("form")
+    = form_for(@ship, :action => url(:ship, @ship)) do
+      %table
+        = partial :form
+        %tr
+          %td
+            %label &nbsp;
+            = submit "Update"
+    
+    
   
 = link_to 'Show', url(:ship, @ship)
 |

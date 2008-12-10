@@ -1,5 +1,5 @@
 class Ships < Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :js, :json
 
   def index
     @ships = Ship.all
@@ -8,7 +8,6 @@ class Ships < Application
   end
 
   def show(id)
-    provides :html, :js
     @ship = Ship.get(id)
     @title = @ship.name
     raise NotFound unless @ship
@@ -18,12 +17,14 @@ class Ships < Application
   def new
     only_provides :html
     @ship = Ship.new
+    @configurations = Configuration.all
     display @ship
   end
 
   def edit(id)
     only_provides :html
     @ship = Ship.get(id)
+    @configurations = Configuration.all
     raise NotFound unless @ship
     display @ship
   end
@@ -41,13 +42,15 @@ class Ships < Application
   def update(id, ship)
     provides :html, :js
     @ship = Ship.get(id)
+    @configurations = Configuration.all
     raise NotFound unless @ship
     if @ship.update_attributes(ship)
+      
       case content_type 
       when :js
         display @ship
       else 
-        redirect url(:edit_ship, @ship), :message => {:notice => "Ship was successfully updated"}
+        redirect resource(@ship, :edit), :message => {:notice => "Ship was successfully updated"}
       end
     else
       display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
