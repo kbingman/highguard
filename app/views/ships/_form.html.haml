@@ -1,6 +1,6 @@
 %tr
   %td{ :colspan => "3" }
-    %label Name
+    %label Class Name
     = text_field :name
 %tr
   %td{ :colspan => "3" }
@@ -11,14 +11,15 @@
   %td{ :colspan => "3" }
     %label{ :for => 'ship_configuration' } Configuration:
     = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }
-    &nbsp;
-    = "#{@ship.configuration.modifier * 100}%" unless @ship.new_record?
+    %span.note
+      = "Modifier: #{@ship.configuration.modifier * 100}%" unless @ship.new_record?
 %tr
   %td
     %label Tonnage
     = text_field :tonnage
   %td.tonnage
     = commify(@ship.tonnage)
+    Tons
   %td.price
     %span MCr
     = commify(@ship.hull_price) unless @ship.new_record?
@@ -31,6 +32,7 @@
         = power_select(8)
     %td.tonnage
       = commify(@ship.powerplant_tonnage)
+      Tons
     %td.price
       %span MCr
       = commify(@ship.powerplant_price)
@@ -41,6 +43,7 @@
         = drive_select('jumpdrive')
     %td.tonnage
       = commify(@ship.jump_tonnage)
+      Tons
     %td.price
       %span MCr
       = commify(@ship.jump_price)
@@ -51,9 +54,34 @@
         = drive_select('thrust')
     %td.tonnage
       = commify(@ship.thrust_tonnage)
+      Tons
     %td.price
       %span MCr
       = commify(@ship.thrust_price)
+      
+    %tr
+      %td
+        %label Jump Fuel:
+      %td.tonnage
+        = commify(@ship.jump_fuel)
+        Tons
+      %td
+    %tr
+      %td
+        %label Powerplant Fuel:
+      %td.tonnage
+        = commify(@ship.powerplant_fuel)
+        Tons
+      %td
+    %tr
+      %td
+        %label
+          %strong Total Fuel:
+      %td.tonnage
+        %strong 
+          = commify(@ship.fuel)
+          Tons
+      %td
   %tr
     %td
       %label Staterooms
