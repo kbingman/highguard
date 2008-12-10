@@ -1,22 +1,27 @@
 %tr
-  %td
+  %td{ :colspan => "3" }
     %label Name
     = text_field :name
 %tr
-  %td
+  %td{ :colspan => "3" }
     %label Tech Level
     %select{ :name => "ship[tech_level]" }
       = tech_level_select
 %tr
-  %td
+  %td{ :colspan => "3" }
     %label{ :for => 'ship_configuration' } Configuration:
     = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }
+    &nbsp;
+    = "#{@ship.configuration.modifier * 100}%" unless @ship.new_record?
 %tr
   %td
     %label Tonnage
     = text_field :tonnage
   %td.tonnage
     = commify(@ship.tonnage)
+  %td.price
+    %span MCr
+    = commify(@ship.hull_price) unless @ship.new_record?
       
 - unless @ship.new_record?
   %tr
@@ -26,24 +31,35 @@
         = power_select(8)
     %td.tonnage
       = commify(@ship.powerplant_tonnage)
+    %td.price
+      %span MCr
+      = commify(@ship.powerplant_price)
   %tr
     %td
       %label{ :for => 'ship_jumpdrive' } Jump Drive:
       %select{ :name => "ship[jumpdrive]" }
         = drive_select('jumpdrive')
     %td.tonnage
-      = @ship.jump_tonnage
+      = commify(@ship.jump_tonnage)
+    %td.price
+      %span MCr
+      = commify(@ship.jump_price)
   %tr    
     %td
       %label Maneuver Drive:
       %select{ :name => "ship[thrust]", :class => "input"}
         = drive_select('thrust')
     %td.tonnage
-      = @ship.thrust_tonnage
+      = commify(@ship.thrust_tonnage)
+    %td.price
+      %span MCr
+      = commify(@ship.thrust_price)
   %tr
     %td
       %label Staterooms
       = text_field :staterooms
     %td.tonnage
-      = @ship.stateroom_tonnage
+      = commify(@ship.stateroom_tonnage)
+    %td.price
+      =# @ship.stateroom_price
     
