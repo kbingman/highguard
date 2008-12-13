@@ -1,0 +1,16 @@
+%h1
+  Weapons controller, index action
+%p
+  Edit this file in
+  %tt
+    app/views/weapons/index.html.erb
+%table
+  %tr
+  - for weapon in @weapons
+    %tr
+      %td
+        = link_to 'Show', url(:weapon, weapon)
+      %td
+        = link_to 'Edit', url(:edit_weapon,  weapon)
+
+= link_to 'New', url(:new_weapon)

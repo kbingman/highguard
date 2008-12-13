@@ -1,4 +1,5 @@
 class Ships < Application
+  require 'prawn' 
   provides :xml, :yaml, :js, :json
 
   def index
@@ -24,7 +25,9 @@ class Ships < Application
   def edit(id)
     only_provides :html
     @ship = Ship.get(id)
+    @title = @ship.name
     @configurations = Configuration.all
+    @weapons = Weapon.all
     raise NotFound unless @ship
     display @ship
   end
@@ -43,6 +46,7 @@ class Ships < Application
     provides :html, :js
     @ship = Ship.get(id)
     @configurations = Configuration.all
+    @weapons = Weapon.all
     raise NotFound unless @ship
     if @ship.update_attributes(ship)
       
@@ -50,7 +54,7 @@ class Ships < Application
       when :js
         display @ship
       else 
-        redirect resource(@ship, :edit), :message => {:notice => "Ship was successfully updated"}
+        redirect resource(@ship, :edit)
       end
     else
       display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
@@ -66,5 +70,19 @@ class Ships < Application
       raise InternalServerError
     end
   end
+  
+  def download_pdf 
+    send_data(generate_pdf, :filename => 'test.pdf', :type => 'application/pdf') 
+  end
+  
+  private 
+    def generate_pdf 
+      Prawn::Document.new do |p| 
+        p.text 'Document Name', :align => 'center' 
+        p.text 'Address: address' 
+        p.text 'text end' 
+      end.render 
+      send_data document, :type => 'application/pdf' 
+    end
 
 end # Ships

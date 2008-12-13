@@ -19,6 +19,10 @@ class Ship
   belongs_to :configuration
   # belongs_to :computer
   
+  has n, :bays
+  has n, :turrets
+  has n, :barbettes
+  
   validates_present :name
   
   def max_jumpdrive
@@ -101,14 +105,43 @@ class Ship
     tonnage * self.configuration.modifier * 0.1
   end
   
+  def hardpoints
+    tonnage / 100
+  end
+  
+  def available_bays
+    tonnage / 1000
+  end
+  
+  def bay_tonnage
+    bay_tonnage = 0
+    self.bays.each do |bay|
+      bay_tonnage = bay_tonnage + (bay.number * bay.size.to_i)
+    end
+    bay_tonnage
+  end
+  
+  def available_turrets
+    tonnage / 100
+  end
+  
+  def turret_tonnage
+    turret_tonnage = 0
+    self.turrets.each do |turret|
+      turret_tonnage = turret_tonnage + (turret.number * turret.size.to_i)
+    end
+    turret_tonnage
+  end
+  
   def subtotal_tonnage
     bridge + 
     stateroom_tonnage +
-    (self.computer ? self.computer.tonnage : 0) +
     powerplant_tonnage + 
     thrust_tonnage + 
-    jumpdrive_tonnage + 
-    jump_fuel
+    jump_tonnage + 
+    jump_fuel +
+    bay_tonnage +
+    turret_tonnage
   end
 
 end

@@ -1,0 +1,13 @@
+%h1 Barbettes controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/barbettes/new.html.erb
+
+= error_messages_for @barbette
+
+= form_for(@barbette, :action => url(:barbettes) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:barbettes)

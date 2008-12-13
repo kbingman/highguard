@@ -29,7 +29,7 @@ rake:
     
 test:
   <<:       *defaults
-  database: golb_test
+  database: highguard_merb_test
 
   # repositories:
   #   repo1:

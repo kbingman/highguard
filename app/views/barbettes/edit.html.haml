@@ -1,0 +1,15 @@
+%h1
+  Barbettes controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/barbettes/edit.html.erb
+= error_messages_for @barbette
+
+= form_for(@barbette, :action => url(:barbette, @barbette)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:barbette, @barbette)
+|
+= link_to 'Back', url(:barbettes)

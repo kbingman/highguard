@@ -39,7 +39,7 @@ module Merb
     end
     
     def drive_select(attribute)
-      result = ""
+      result = ''
       6.times do |i|
         unless i + 1 > @ship.send("max_#{attribute}")
           selected = (@ship.send(attribute) == i + 1) ? ' selected="selected"':''
@@ -50,13 +50,22 @@ module Merb
     end
 
     def power_select(n)
-      result = ""
+      result = ''
       n.times do |i|
-        # thrust = @ship.thrust ? @ship.thrust : 0
-        # unless i + 1 < thrust 
+        thrust = @ship.thrust ? @ship.thrust : 0
+        jump = @ship.jumpdrive ? @ship.jumpdrive : 0
+        unless i + 1 < thrust or i + 1 < jump
           selected = (@ship.power == i + 1) ? ' selected="selected"':''
           result = result + "<option#{selected}>#{i + 1}</option>\n"
-        # end
+        end
+      end
+      result
+    end
+    
+    def weapon_select(name, weapons)
+      result = ''
+      weapons.each do |weapon|
+        result = result + "<option>#{weapon.name}</option>\n" unless weapon.send(name) == false
       end
       result
     end

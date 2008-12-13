@@ -1,0 +1,16 @@
+%h1
+  Barbettes controller, index action
+%p
+  Edit this file in
+  %tt
+    app/views/barbettes/index.html.erb
+%table
+  %tr
+  - for barbette in @barbettes
+    %tr
+      %td
+        = link_to 'Show', url(:barbette, barbette)
+      %td
+        = link_to 'Edit', url(:edit_barbette,  barbette)
+
+= link_to 'New', url(:new_barbette)

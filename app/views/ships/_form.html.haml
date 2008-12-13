@@ -1,7 +1,11 @@
 %tr
   %td{ :colspan => "3" }
-    %label Class Name
+    %label Class Name:
     = text_field :name
+%tr
+  %td{ :colspan => '3' }
+    %label Description
+    =# text_area :description
 %tr
   %td{ :colspan => "3" }
     %label Tech Level
@@ -15,7 +19,7 @@
       = "Modifier: #{@ship.configuration.modifier * 100}%" unless @ship.new_record?
 %tr
   %td
-    %label Tonnage
+    %label Tonnage:
     = text_field :tonnage
   %td.tonnage
     = commify(@ship.tonnage)
@@ -84,10 +88,39 @@
       %td
   %tr
     %td
+      %label Bridge
+      
+    %td.tonnage
+      = commify(@ship.bridge)
+      Tons
+    %td.price
+      =# @ship.stateroom_price
+  
+  %tr 
+    %td 
+      %label Hardpoints
+    %td
+      = @ship.hardpoints
+    %td    
+  = partial :bays, :format => :html
+  = partial :barbettes, :format => :html
+  = partial :turrets, :format => :html
+  
+  %tr
+    %td
       %label Staterooms
       = text_field :staterooms
     %td.tonnage
       = commify(@ship.stateroom_tonnage)
+      Tons
     %td.price
       =# @ship.stateroom_price
+      
+  %tr 
+    %td 
+      %label Total
+    %td.tonnage
+      = commify(@ship.subtotal_tonnage)
+      Tons
+    %td
     

@@ -2,7 +2,7 @@ class Computer
   include DataMapper::Resource
   
   property :id, Serial
-  property :name, String
+  property :model, String
   property :tonnage, Integer
   property :capacity, String
   property :tech_level, Integer

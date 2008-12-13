@@ -1,0 +1,15 @@
+%h1
+  Weapons controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/weapons/edit.html.erb
+= error_messages_for @weapon
+
+= form_for(@weapon, :action => url(:weapon, @weapon)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:weapon, @weapon)
+|
+= link_to 'Back', url(:weapons)
