@@ -14,5 +14,6 @@ class Weapon
 
   has n, :bays
   has n, :turrets
+  has n, :barbettes
   
 end

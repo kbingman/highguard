@@ -1,3 +1,5 @@
+require 'prawn'
+
 class Ship
   include DataMapper::Resource
 
@@ -143,5 +145,16 @@ class Ship
     bay_tonnage +
     turret_tonnage
   end
+  
+  def to_pdf
+    document = Prawn::Document.new do |p| 
+      p.text 'Document Name', :align => 'center' 
+      p.text 'Address: address' 
+      p.text 'text end' 
+    end.render 
+    send_data document, :type => 'application/pdf'
+  end
+  
+  
 
 end

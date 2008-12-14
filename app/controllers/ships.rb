@@ -1,6 +1,5 @@
 class Ships < Application
-  require 'prawn' 
-  provides :xml, :yaml, :js, :json
+  # provides :xml, :yaml, :js, :pdf
 
   def index
     @ships = Ship.all
@@ -9,6 +8,7 @@ class Ships < Application
   end
 
   def show(id)
+    provides :html, :xml, :yaml, :pdf, :text
     @ship = Ship.get(id)
     @title = @ship.name
     raise NotFound unless @ship
@@ -46,7 +46,10 @@ class Ships < Application
     provides :html, :js
     @ship = Ship.get(id)
     @configurations = Configuration.all
-    @weapons = Weapon.all
+    update_ship_weapons('bay')
+    update_ship_weapons('barbette')
+    update_ship_weapons('turret')
+
     raise NotFound unless @ship
     if @ship.update_attributes(ship)
       
@@ -71,18 +74,16 @@ class Ships < Application
     end
   end
   
-  def download_pdf 
-    send_data(generate_pdf, :filename => 'test.pdf', :type => 'application/pdf') 
-  end
-  
-  private 
-    def generate_pdf 
-      Prawn::Document.new do |p| 
-        p.text 'Document Name', :align => 'center' 
-        p.text 'Address: address' 
-        p.text 'text end' 
-      end.render 
-      send_data document, :type => 'application/pdf' 
+  protected
+    def update_ship_weapons(weapon_type)
+      weapon = weapon_type.to_sym
+      if params[weapon] && params[weapon][:number] != ''
+        klass = Object.full_const_get(weapon_type.capitalize)
+        @weapon_type = klass.new(params[weapon])
+        @ship.send(weapon_type.pluralize) << @weapon_type
+        @weapon_type.save
+      end
+      
     end
 
 end # Ships

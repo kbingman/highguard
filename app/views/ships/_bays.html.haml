@@ -1,5 +1,14 @@
-%tr
-  %td
-    %label Bays
-    %select{ :name => 'bays[weapon]' }
-      = weapon_select('bay', @weapons)
+%tr 
+  %th{ :colspan => "2"}   
+    Bays
+  %th
+    = link_to 'add', '#', :class => 'addBays'
+- @ship.bays.each do |bay|  
+  %tr
+    %td 
+      %label 
+        = bay.weapon.name.pluralize
+      = bay.number
+    %td.tonnage
+      = bay.number * bay.size.to_i
+      Tons

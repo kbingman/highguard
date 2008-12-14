@@ -1,7 +1,7 @@
 %tr
   %td{ :colspan => "3" }
     %label Class Name:
-    = text_field :name
+    = text_field :name, :class => 'trigger'
 %tr
   %td{ :colspan => '3' }
     %label Description
@@ -9,18 +9,18 @@
 %tr
   %td{ :colspan => "3" }
     %label Tech Level
-    %select{ :name => "ship[tech_level]" }
+    %select.trigger{ :name => "ship[tech_level]" }
       = tech_level_select
 %tr
   %td{ :colspan => "3" }
     %label{ :for => 'ship_configuration' } Configuration:
-    = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }
+    = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
     %span.note
       = "Modifier: #{@ship.configuration.modifier * 100}%" unless @ship.new_record?
 %tr
   %td
     %label Tonnage:
-    = text_field :tonnage
+    = text_field :tonnage, :class => 'trigger'
   %td.tonnage
     = commify(@ship.tonnage)
     Tons
@@ -32,7 +32,7 @@
   %tr
     %td
       %label Power
-      %select{ :name => "ship[power]" }
+      %select.trigger{ :name => "ship[power]" }
         = power_select(8)
     %td.tonnage
       = commify(@ship.powerplant_tonnage)
@@ -43,7 +43,7 @@
   %tr
     %td
       %label{ :for => 'ship_jumpdrive' } Jump Drive:
-      %select{ :name => "ship[jumpdrive]" }
+      %select.trigger{ :name => "ship[jumpdrive]" }
         = drive_select('jumpdrive')
     %td.tonnage
       = commify(@ship.jump_tonnage)
@@ -54,7 +54,7 @@
   %tr    
     %td
       %label Maneuver Drive:
-      %select{ :name => "ship[thrust]", :class => "input"}
+      %select.trigger{ :name => "ship[thrust]", :class => "input"}
         = drive_select('thrust')
     %td.tonnage
       = commify(@ship.thrust_tonnage)
@@ -101,21 +101,35 @@
       %label Hardpoints
     %td
       = @ship.hardpoints
-    %td    
+    %td
+    
   = partial :bays, :format => :html
+  = partial :weapons_form, :format => :html, :weapon_type => 'bay'
+  
   = partial :barbettes, :format => :html
+  = partial :weapons_form, :format => :html, :weapon_type => 'barbette'
+  
   = partial :turrets, :format => :html
+  = partial :weapons_form, :format => :html, :weapon_type => 'turret'
+  
+  %tr 
+    %th{ :colspan => "3"}   
+      Ammunition
+  
+  %tr 
+    %th{ :colspan => "3"}   
+      Crew and Accommodations
   
   %tr
     %td
       %label Staterooms
-      = text_field :staterooms
+      = text_field :staterooms, :class => 'trigger'
     %td.tonnage
       = commify(@ship.stateroom_tonnage)
       Tons
     %td.price
       =# @ship.stateroom_price
-      
+ 
   %tr 
     %td 
       %label Total

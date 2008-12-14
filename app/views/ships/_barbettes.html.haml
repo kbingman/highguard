@@ -1,5 +1,12 @@
-%tr
-  %td
-    %label Barbettes
-    %select{ :name => 'barbettes[weapon]' }
-      = weapon_select('barbette', @weapons)
+%tr 
+  %th{ :colspan => "3"}   
+    Barbettes
+- @ship.barbettes.each do |barbette|  
+  %tr
+    %td 
+      %label 
+        = barbette.weapon.name.pluralize
+      = barbette.number
+    %td.tonnage
+      = barbette.number * 5
+      Tons

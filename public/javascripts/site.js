@@ -6,7 +6,7 @@ $(document).ready(function(){
 
   // $('#ship form input.submit').ajaxSubmit();
   
-  $('#ship select, #ship input')
+  $('#ship select.trigger, #ship input.trigger')
     .livequery('change', function(){ 
       var $form = $('#ship form');
       var url = $form.attr('action') + '.js'
@@ -23,7 +23,14 @@ $(document).ready(function(){
     });
     return false;
   });
-  //$('#ship form input.submit').ajaxSubmit();
+  // $('tr.addBays').livequery(function(){
+  //   $(this).hide();
+  // }
+  // );
+  // $('a.addBays').livequery('click',function(){
+  //   $('tr.addBays').toggle();
+  //   return false;
+  // });
   
 });
 

@@ -17,12 +17,12 @@ module Merb
       int.reverse # + dec - removed the decimal point because we don't need it here
     end
     
-    def numbers_list(n)
-      list = []
+    def number_select(n)
+      result = ''
       n.times do |i|
-        list << ["#{i+1}", "#{i+1}"]
+        result = result + "<option>#{i}</option>\n"
       end
-      list
+      result
     end
     
     def tech_level_select
@@ -62,10 +62,23 @@ module Merb
       result
     end
     
-    def weapon_select(name, weapons)
+    def weapon_select(name)
       result = ''
-      weapons.each do |weapon|
-        result = result + "<option>#{weapon.name}</option>\n" unless weapon.send(name) == false
+      Weapon.all.each do |weapon|
+        result = result + "<option value='#{weapon.id}'>#{weapon.name}</option>\n" unless weapon.send(name) == false
+      end
+      result
+    end
+    
+    def weapon_size_select(name)
+      case name
+        when 'bay'      : fields = [['50','50 Tons'],['100','100 Tons']]
+        when 'turret'   : fields = [['Triple','Triple'],['Double','Double'],['Single','Single']]
+        when 'barbette' : fields = [['5','Standard (5 Ton)']]
+      end
+      result = ''
+      fields.each do |field|
+        result = result + "<option value='#{field[0]}'>#{field[1]}</option>\n" 
       end
       result
     end

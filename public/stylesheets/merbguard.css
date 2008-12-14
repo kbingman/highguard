@@ -85,4 +85,6 @@ form textarea.text {
   width: 100%;
   padding: 2px; }
 form select {
-  width: 140px; }
+  width: 120px; }
+  form select.number {
+    width: 60px; }

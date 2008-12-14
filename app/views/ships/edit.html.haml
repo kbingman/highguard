@@ -5,7 +5,7 @@
 #ship 
   #target
     = form_for(@ship, :action => url(:ship, @ship)) do
-      %table
+      %table{ :cellspacing => '0' }
         = partial :form
         %tr
           %td
