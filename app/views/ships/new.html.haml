@@ -3,12 +3,11 @@
   = link_to 'Back', url(:ships)
 
   = error_messages_for @ship
-  #ship 
-    #target
-      = form_for(@ship, :action => url(:ships) ) do
-        %table
-          = partial :form
-          %tr
-            %td
-              %label &nbsp;
-              = submit "Create"
+
+  = form_for(@ship, :action => url(:ships) ) do
+    %table
+      = partial :form
+      %tr
+        %td
+          %label &nbsp;
+          = submit "Create"

@@ -46,13 +46,14 @@ class Ships < Application
     provides :html, :js
     @ship = Ship.get(id)
     @configurations = Configuration.all
+    
+    # Saves the params of each type of weapons
     update_ship_weapons('bay')
     update_ship_weapons('barbette')
     update_ship_weapons('turret')
 
     raise NotFound unless @ship
     if @ship.update_attributes(ship)
-      
       case content_type 
       when :js
         display @ship
@@ -82,8 +83,7 @@ class Ships < Application
         @weapon_type = klass.new(params[weapon])
         @ship.send(weapon_type.pluralize) << @weapon_type
         @weapon_type.save
-      end
-      
+      end   
     end
 
 end # Ships

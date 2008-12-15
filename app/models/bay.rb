@@ -10,5 +10,9 @@ class Bay
   
   belongs_to :weapon
   belongs_to :ship
+  
+  def name
+    self.weapon.name
+  end
 
 end

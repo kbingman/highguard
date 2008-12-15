@@ -49,6 +49,9 @@ table th {
   table th.ep {
     padding-right: 12px;
     text-align: right; }
+  table th .info {
+    font-weight: normal;
+    font-style: italic; }
 table td {
   padding: 3px 0;
   padding-right: 12px;

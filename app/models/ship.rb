@@ -111,10 +111,6 @@ class Ship
     tonnage / 100
   end
   
-  def available_bays
-    tonnage / 1000
-  end
-  
   def bay_tonnage
     bay_tonnage = 0
     self.bays.each do |bay|
@@ -123,8 +119,20 @@ class Ship
     bay_tonnage
   end
   
-  def available_turrets
-    tonnage / 100
+  def total_bays
+    total_bays = 0
+    self.bays.each do |bay|
+      total_bays = total_bays + bay.number
+    end
+    total_bays
+  end
+  
+  def available_bays
+    case 
+      when tonnage >= 1000 : available_bays = (tonnage / 1000) - total_bays
+      when tonnage < 1000  : available_bays = 1 - total_bays
+    end
+    available_bays
   end
   
   def turret_tonnage
@@ -135,6 +143,34 @@ class Ship
     turret_tonnage
   end
   
+  def total_turrets
+    total_turrets = 0
+    self.turrets.each do |turret|
+      total_turrets = total_turrets + turret.number
+    end
+    total_turrets
+  end
+  
+  def barbette_tonnage
+    barbette_tonnage = 0
+    self.barbettes.each do |barbette|
+      barbette_tonnage = barbette_tonnage + (barbette.number * barbette.size.to_i)
+    end
+    barbette_tonnage
+  end
+  
+  def total_barbettes
+    total_barbettes = 0
+    self.barbettes.each do |barbette|
+      total_barbettes = total_barbettes + barbette.number
+    end
+    total_barbettes
+  end
+  
+  def available_hardpoints
+    (tonnage / 100) - total_barbettes - total_turrets
+  end
+  
   def subtotal_tonnage
     bridge + 
     stateroom_tonnage +
@@ -143,6 +179,7 @@ class Ship
     jump_tonnage + 
     jump_fuel +
     bay_tonnage +
+    barbette_tonnage +
     turret_tonnage
   end
   
