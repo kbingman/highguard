@@ -2,9 +2,6 @@
 // $.ajaxSetup({'beforeSend':function(xhr){xhr.setRequestHeader("Accept","text/javascript")}})
 
 $(document).ready(function(){
-  // var $form = $('#ship form');
-
-  // $('#ship form input.submit').ajaxSubmit();
   
   $('#ship select.trigger, #ship input.trigger')
     .livequery('change', function(){ 
@@ -23,14 +20,15 @@ $(document).ready(function(){
     });
     return false;
   });
-  // $('tr.addBays').livequery(function(){
-  //   $(this).hide();
-  // }
-  // );
-  // $('a.addBays').livequery('click',function(){
-  //   $('tr.addBays').toggle();
-  //   return false;
-  // });
+  
+  $('a.delete').livequery('click',function(){
+    var url = $(this).attr('href').split('/');
+    var deleteUrl = '/' + url[1] + '/' + url[2];
+    alert('are you sure you want to remove this?')
+    $.post(deleteUrl,{ _method: "DELETE" });
+    $(this).parents('tr').hide();
+    return false;
+  });
   
 });
 

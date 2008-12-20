@@ -16,5 +16,7 @@
       = "#{bay_label} #{bay_size} (#{bay.size} Ton)" 
 
     %td.tonnage
-      = bay.number * bay.size.to_i
+      = commify(bay.number * bay.size.to_i)
       Tons
+    %td
+      = link_to "delete", url(:delete_bay, bay), :class => 'delete', :method => 'delete'

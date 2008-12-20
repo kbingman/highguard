@@ -1,5 +1,6 @@
 class Turret
   include DataMapper::Resource
+  before :create, :check_availability
   
   property :id, Serial
   property :size, String
@@ -14,5 +15,10 @@ class Turret
   def name
     self.weapon.name
   end
+  
+  private
+    def check_availability
+      self.number = number > self.ship.available_hardpoints ? self.ship.available_hardpoints : number
+    end
 
 end

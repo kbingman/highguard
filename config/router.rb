@@ -28,6 +28,8 @@
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
   resources :barbettes
+  resources :bays
+  resources :turrets
   resources :weapons
   resources :computers
   resources :configurations
@@ -43,7 +45,7 @@ Merb::Router.prepare do
   # routes, you may want to comment/remove this line to prevent
   # clients from calling your create or destroy actions with a GET
   default_routes
-  match('/test/').to(:controller => 'ships', :action =>'download_pdf')
+
   # Change this for your home page to be available at /
   # match('/').to(:controller => 'whatever', :action =>'index')
   match('/').to(:controller => 'ships', :action =>'index')

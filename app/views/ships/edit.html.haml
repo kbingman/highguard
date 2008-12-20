@@ -2,11 +2,23 @@
   Ships controller, edit action
   
 = error_messages_for @ship
+
+%ul.tabNavigation
+  %li
+    %a{ :href => "#info" }
+      Info
+  %li
+    %a{ :href => "#drives" }
+      Drives
+  %li
+    %a{ :href => "#command" }
+      Command
+
 #ship 
   #target
     = form_for(@ship, :action => url(:ship, @ship)) do
-      %table{ :cellspacing => '0' }
-        = partial :form
+      = partial :form
+      %table{ :cellspacing => "0" }
         %tr
           %td
             %label &nbsp;

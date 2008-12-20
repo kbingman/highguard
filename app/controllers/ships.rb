@@ -1,5 +1,6 @@
 class Ships < Application
-  # provides :xml, :yaml, :js, :pdf
+  # provides :js, :pdf
+  require 'pdf/writer'  
 
   def index
     @ships = Ship.all
@@ -8,11 +9,19 @@ class Ships < Application
   end
 
   def show(id)
-    provides :html, :xml, :yaml, :pdf, :text
+    provides :html, :pdf, :text
     @ship = Ship.get(id)
     @title = @ship.name
     raise NotFound unless @ship
-    display @ship
+ 
+    case content_type 
+    when :pdf
+      pdf = generate_pdf
+      send_file pdf, :file_name => "#{@ship.name}.pdf", :type => 'application/pdf', :disposition => 'inline'
+    else 
+      display @ship
+    end
+    
   end
 
   def new
@@ -84,6 +93,15 @@ class Ships < Application
         @ship.send(weapon_type.pluralize) << @weapon_type
         @weapon_type.save
       end   
+    end
+    
+    def generate_pdf
+      pdf = Prawn::Document.new do |p| 
+        p.text 'Document Name', :align => 'center' 
+        p.text 'Address: address' 
+        p.text 'text end' 
+      end.render
+      send_file pdf, :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
     end
 
 end # Ships

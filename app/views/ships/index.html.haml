@@ -9,5 +9,7 @@
         = link_to ship.name, url(:edit_ship,  ship)
       %td
         = link_to 'Show', url(:ship,  ship)
+      %td 
+        = link_to "delete", url(:delete_ship, ship), :class => 'delete', :method => 'delete'
 
 = link_to 'New', url(:new_ship)

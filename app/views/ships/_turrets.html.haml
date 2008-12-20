@@ -11,3 +11,5 @@
         = turret.weapon.name.pluralize
     %td
       = turret.number
+    %td
+      = link_to "delete", url(:delete_turret, turret), :class => 'delete'

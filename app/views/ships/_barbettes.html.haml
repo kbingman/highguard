@@ -11,5 +11,7 @@
         = barbette.weapon.name.pluralize
       = barbette.number
     %td.tonnage
-      = barbette.number * 5
+      = commify(barbette.number * 5)
       Tons
+    %td
+      = link_to "delete", url(:delete_barbette, barbette), :class => 'delete'
