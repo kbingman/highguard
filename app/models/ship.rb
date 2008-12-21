@@ -211,10 +211,14 @@ class Ship
   end
   
   private
-     def check_drives
+   def check_drives
+     if jumpdrive
        self.jumpdrive = jumpdrive > max_jumpdrive ? max_jumpdrive : jumpdrive
+     end
+     if jumpdrive && thrust
        required_power = thrust > jumpdrive ? thrust : jumpdrive
        self.power = required_power unless power > required_power
+     end
      end
 
 end
