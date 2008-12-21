@@ -16,3 +16,5 @@ src/*
 .hgignore
 .hg/*
 .svn/*
+gems/gems
+gems/specifictations
