@@ -7,13 +7,14 @@ $(document).ready(function(){
     .livequery('change', function(){ 
       var $form = $('#ship form');
       var url = $form.attr('action') + '.js'
+      alert($(this).parents('table').attr('id'));
       $form.ajaxSubmit({ 
         url:    url,
         target: '#target'
       });
     });
   $('#ship form').livequery('submit',function() {
-    var url = $(this).attr('action') + '.js'
+    var url = $(this).attr('action') + '.js';
     $(this).ajaxSubmit({ 
       url:    url,
       target: '#target'
@@ -29,6 +30,17 @@ $(document).ready(function(){
     $(this).parents('tr').hide();
     return false;
   });
+  
+  // var tabContainers = $('#tabs > table');
+
+  // $('#tabNavigation a').click(function () {
+  //   tabContainers.hide().filter(this.hash).show();
+
+  //   $('#tabNavigation a').removeClass('selected');
+  //   $(this).addClass('selected');
+
+  //   return false;
+  // }).filter(':first').click();
   
 });
 

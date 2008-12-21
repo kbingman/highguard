@@ -72,8 +72,7 @@ table td {
 form label {
   display: inline-block;
   width: 100px;
-  text-align: right;
-  padding-top: 3px; }
+  text-align: right; }
 form input.text {
   border: 1px solid #888;
   height: 18px;

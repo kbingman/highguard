@@ -1,6 +1,5 @@
 class Ships < Application
-  # provides :js, :pdf
-  require 'pdf/writer'  
+  # provides :js, :pdf  
 
   def index
     @ships = Ship.all
@@ -100,7 +99,7 @@ class Ships < Application
         p.text 'Document Name', :align => 'center' 
         p.text 'Address: address' 
         p.text 'text end' 
-      end.render
+      end.render_file "/Users/keith/Merb/highguard/public/#{@ship}.pdf"
       send_file pdf, :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
     end
 

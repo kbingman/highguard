@@ -1,18 +1,20 @@
 %h1
   Ships controller, edit action
   
-= error_messages_for @ship
+#tabNavigation
+  %a{ :href => "#info" }
+    Info
+  |
+  %a{ :href => "#drives" }
+    Drives
+  |
+  %a{ :href => "#command" }
+    Command
+  | 
+  %a{ :href => "#weapons" }
+    Weapons
 
-%ul.tabNavigation
-  %li
-    %a{ :href => "#info" }
-      Info
-  %li
-    %a{ :href => "#drives" }
-      Drives
-  %li
-    %a{ :href => "#command" }
-      Command
+= error_messages_for @ship
 
 #ship 
   #target
