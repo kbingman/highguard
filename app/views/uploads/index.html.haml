@@ -1,0 +1,7 @@
+%h1 Uploads
+
+%ul
+  - @uploads.each do |upload|
+    %li
+      = link_to image_tag(upload.url('icon')), url(:upload, upload)
+

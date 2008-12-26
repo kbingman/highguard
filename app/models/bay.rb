@@ -1,6 +1,8 @@
 class Bay
   include DataMapper::Resource
-  before :create, :check_availability
+  #before :create, :check_availability
+  
+  validates_with_method :check_weapons
   
   property :id, Serial
   property :size, Integer
@@ -19,6 +21,14 @@ class Bay
   private
     def check_availability
       self.number = number > self.ship.available_bays ? self.ship.available_bays : number
+    end
+    
+    def check_weapons
+      if self.number <= self.ship.available_bays - self.number
+        return true
+      else
+        [false, "You have reached your limit of available bays."]
+      end
     end
 
 end

@@ -1,0 +1,5 @@
+%h1 Upload
+
+= form(:action => url(:uploads), :enctype => "multipart/form-data") do 
+  = file_field :name => 'file', :label => 'Your file:'
+  = submit "Upload!"

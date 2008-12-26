@@ -1,10 +1,6 @@
-= form_for(@ship, :action => url(:ship, @ship)) do
-  %table{ :cellspacing => '0' }
-    = partial :form, :format => :html
-    %tr
-      %td
-        %label &nbsp;
-        = submit "Update"
+%table{ :cellspacing => '0' }
+  = partial :ship, :format => :html
+
 
   
     

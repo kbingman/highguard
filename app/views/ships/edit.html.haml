@@ -1,5 +1,4 @@
-%h1
-  Ships controller, edit action
+// %h1= @ship.name
   
 #tabNavigation
   %a{ :href => "#info" }
@@ -13,19 +12,25 @@
   | 
   %a{ :href => "#weapons" }
     Weapons
+  | 
+  %a{ :href => "#crew" }
+    Crew
 
 = error_messages_for @ship
 
-#ship 
-  #target
-    = form_for(@ship, :action => url(:ship, @ship)) do
-      = partial :form
-      %table{ :cellspacing => "0" }
-        %tr
-          %td
-            %label &nbsp;
-            = submit "Update"
+#info
+  = form_for(@ship, :action => url(:ship, @ship)) do
+    = partial :form
+    %p
+      %label &nbsp;
+      = submit "Update"
+
+#ship
+  %table{ :cellspacing => "0" } 
+    = partial :ship
     
-= link_to 'Show', url(:ship, @ship)
-|
-= link_to 'Back', url(:ships)
+// = link_to 'Show', url(:ship, @ship)
+// |
+/  = link_to 'Back', url(:ships)
+
+.clear

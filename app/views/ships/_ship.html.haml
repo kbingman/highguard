@@ -1,0 +1,124 @@
+%h3 
+  Class Name: 
+  = @ship.name
+
+%p
+  %strong Description:
+  %br
+  = @ship.description
+
+%tr
+  %td.label Tech Level:
+  %td.info= @ship.tech_level
+  %td{ :colspan => '2' }
+%tr
+  %td.label 
+    Configuration:
+  %td
+    = @ship.configuration.name
+  %td
+  %td.price
+    = "#{commify(@ship.configuration.modifier * 100)}%"
+%tr
+  %td.label Tonnage:
+  %td
+  %td.tonnage
+    = commify(@ship.tonnage)
+    Tons
+  %td.price
+    %span MCr
+    = commify(@ship.hull_price) unless @ship.new_record?
+
+- unless @ship.new_record?
+  %tr
+    %td.label Power:
+    %td.info= @ship.power
+    %td.tonnage
+      = commify(@ship.powerplant_tonnage)
+      Tons
+    %td.price
+      %span MCr
+      = commify(@ship.powerplant_price)
+  %tr
+    %td.label Jump Drive:
+    %td.info= @ship.jumpdrive
+    %td.tonnage
+      = commify(@ship.jump_tonnage)
+      Tons
+    %td.price
+      %span MCr
+      = commify(@ship.jump_price)
+  %tr    
+    %td.label Maneuver Drive:
+    %td.info= @ship.thrust
+    %td.tonnage
+      = commify(@ship.thrust_tonnage)
+      Tons
+    %td.price
+      %span MCr
+      = commify(@ship.thrust_price)
+  %tr
+    %td.label Bridge:
+    %td.info
+    %td.tonnage
+      = commify(@ship.bridge)
+      Tons
+    %td.price
+      =# @ship.bridge_price
+  - @ship.bays.each do |bay|
+    %tr
+      %td.label 
+        = bay.name
+        Bays
+      %td.info= bay.number
+      %td.tonnage
+      %td.price   
+
+  %tr
+    %td.label Staterooms:
+    %td.info= @ship.staterooms
+    %td.tonnage
+      = commify(@ship.stateroom_tonnage)
+      Tons
+    %td.price
+      =# @ship.stateroom_price
+  %tr
+    %td{ :colspan => "3" }
+      &nbsp;
+  %tr
+    %td.label Jump Fuel:
+    %td.info
+    %td.tonnage
+      = commify(@ship.jump_fuel)
+      Tons
+    %td
+  %tr
+    %td.label Powerplant Fuel:
+    %td.info
+    %td.tonnage
+      = commify(@ship.powerplant_fuel)
+      Tons
+    %td
+  %tr
+    %td.label
+      %strong Total Fuel:
+    %td.info
+    %td.tonnage
+      %strong 
+        = commify(@ship.fuel)
+        Tons
+    %td      
+
+  %tr 
+    %td.label 
+      %strong Total
+    %td.info
+    %td.tonnage
+      %strong 
+        = commify(@ship.subtotal_tonnage)
+        Tons
+    %td.price
+      %strong 
+        %span MCr
+        = commify(@ship.subtotal_tonnage)
+        

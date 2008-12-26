@@ -21,5 +21,4 @@ class Barbette
       self.number = number > self.ship.available_hardpoints ? self.ship.available_hardpoints : number
     end
 
-
 end
