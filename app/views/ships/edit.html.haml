@@ -1,20 +1,9 @@
 // %h1= @ship.name
   
-#tabNavigation
-  %a{ :href => "#info" }
-    Info
+#navigation
+  = link_to 'Show', url(:ship, @ship)
   |
-  %a{ :href => "#drives" }
-    Drives
-  |
-  %a{ :href => "#command" }
-    Command
-  | 
-  %a{ :href => "#weapons" }
-    Weapons
-  | 
-  %a{ :href => "#crew" }
-    Crew
+  = link_to 'Index', url(:ships)
 
 = error_messages_for @ship
 

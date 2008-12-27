@@ -1,38 +1,43 @@
 #tabs
-  #info
-    %h2 Class Name and Information
-    %p
-      %label Class Name:
-      = text_field :name, :class => 'trigger'
-    %p
-      %label Description
-      = text_area :description
-    %p
-      %label Tech Level
-      %select.trigger{ :name => "ship[tech_level]" }
-        = tech_level_select
-    %p
-      %label{ :for => 'ship_configuration' } Configuration:
-      = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
-    %p
-      %label Tonnage:
-      = text_field :tonnage, :class => 'trigger'
+  #shipInfo
+    %h2
+      = @ship.name
+      = link_to 'edit', '#', :class => 'editLink'
+    .info
+    .edit
+      %p
+        %label Class Name:
+        = text_field :name, :class => 'trigger'
+      %p
+        %label Description:
+        = text_area :description
+      %p
+        %label Tech Level
+        %select.trigger{ :name => "ship[tech_level]" }
+          = tech_level_select
+      %p
+        %label{ :for => 'ship_configuration' } Configuration:
+        = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
+      %p
+        %label Tonnage:
+        = text_field :tonnage, :class => 'trigger'
       
   - unless @ship.new_record?
     #drives
       %h2 Drives and Power
-      %p
-        %label Power
-        %select.trigger{ :name => "ship[power]" }
-          = power_select(8)
-      %p
-        %label{ :for => 'ship_jumpdrive' } Jump Drive:
-        %select.trigger{ :name => "ship[jumpdrive]" }
-          = drive_select('jumpdrive')
-      %p    
-        %label Maneuver Drive:
-        %select.trigger{ :name => "ship[thrust]", :class => "input"}
-          = drive_select('thrust')
+      .edit
+        %p
+          %label Power:
+          %select.trigger{ :name => "ship[power]" }
+            = power_select(8)
+        %p
+          %label{ :for => 'ship_jumpdrive' } Jump Drive:
+          %select.trigger{ :name => "ship[jumpdrive]" }
+            = drive_select('jumpdrive')
+        %p    
+          %label Maneuver Drive:
+          %select.trigger{ :name => "ship[thrust]", :class => "input"}
+            = drive_select('thrust')
           
       %h2 Fuel Storage and Processing
       
@@ -43,22 +48,29 @@
         
     #weapons
       %h2 Weapons Systems    
-  
-      = partial :bays, :format => :html
-      - unless @ship.available_bays <= 0
-        = partial :weapons_form, :format => :html, :weapon_type => 'bay'
-      = partial :weapons_form, :format => :html, :weapon_type => 'barbette'
       
-      = partial :weapons_form, :format => :html, :weapon_type => 'turret'
+  
+      = partial :show_weapon, :format => :html, :weapon_type => 'bays'
+      - unless @ship.available_bays <= 0
+        .edit
+          = partial :weapons_form, :format => :html, :weapon_type => 'bay'
+      = partial :show_weapon, :format => :html, :weapon_type => 'barbettes'
+      - unless @ship.available_hardpoints <= 0  
+        .edit 
+          = partial :weapons_form, :format => :html, :weapon_type => 'barbette'
+      = partial :show_weapon, :format => :html, :weapon_type => 'turrets'
+      - unless @ship.available_hardpoints <= 0
+        .edit
+          = partial :weapons_form, :format => :html, :weapon_type => 'turret'
   
       %h2 Ammunition
         
     #crew
       %h2 Crew and Accommodations
-  
-      %p
-        %label Staterooms
-        = text_field :staterooms, :class => 'trigger'
+      .edit
+        %p
+          %label Staterooms
+          = text_field :staterooms, :class => 'trigger'
 
 
 

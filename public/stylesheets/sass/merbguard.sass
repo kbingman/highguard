@@ -3,12 +3,13 @@ body
   :font-size 75%
   :line-height 1.5
   :margin 0
+  :background #eee
   
 .container
-  :width 960px
+  :width 940px
   :margin 0 auto 
-  :border 1px solid #aaa
   :padding 10px
+  :background #fff url('/images/body.png') repeat-y
   
 a 
   :color #4d9b12
@@ -20,10 +21,6 @@ a
     :background-color #fff
     :text-decoration underline
 
-#footer-container 
-  :clear both
-  :font-size 12px
-  :font-family Verdana, Arial, sans-serif
 
 .right 
   :float right
@@ -43,11 +40,9 @@ a
   :margin-left 3.0em
   
 #tabs 
-  :width 360px
-  :height 240px
+
   
-#info
-  :float left
+
 p.add
   label
     :display block
@@ -63,8 +58,10 @@ h2
   :color #777
   :font-weight bold
   
-table#ship
+
+#ship
   :float right
+  :display none
 
 table 
   th 
@@ -114,10 +111,10 @@ form
     &.number 
       :width 50px
       :text-align right
-  textarea.text 
+  textarea 
     :border 1px solid #888
     :height 48px
-    :width 100%
+    :width 300px
     :padding 2px
   select 
     :width 120px
