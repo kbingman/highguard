@@ -3,3 +3,7 @@
 = form(:action => url(:uploads), :enctype => "multipart/form-data") do 
   = file_field :name => 'file', :label => 'Your file:'
   = submit "Upload!"
+  
+  
+= form(:action => '/uploads/import') do 
+  = submit "Import!"

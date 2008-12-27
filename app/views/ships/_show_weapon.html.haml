@@ -1,0 +1,15 @@
+- if !@ship.send(weapon_type).empty?
+  %tr
+    %th.label{ :colspan => "4" }
+      = weapon_type.capitalize
+    
+- @ship.send(weapon_type).each do |weapon|
+  %tr
+    %td.label 
+      = weapon.name.pluralize
+    %td.info
+      = weapon.number
+    %td.tonnage
+      = weapon.tonnage
+      Tons
+    %td.price

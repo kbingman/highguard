@@ -30,7 +30,7 @@ $(document).ready(function(){
     return false;
   });
   
-  $('ul a img')
+  $('ul a')
     .css({opacity:0.5})
     .hover(
       function(){

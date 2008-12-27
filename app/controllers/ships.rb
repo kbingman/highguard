@@ -61,16 +61,17 @@ class Ships < Application
     update_ship_weapons('turret')
 
     raise NotFound unless @ship
-    if @ship.update_attributes(ship)
+    @ship.update_attributes(ship)
+    # if @ship.save
       case content_type 
       when :js
         display @ship
       else 
         redirect resource(@ship, :edit)
       end
-    else
-      display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
-    end
+    # else
+    #   display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
+    # end
   end
 
   def destroy(id)
@@ -86,11 +87,24 @@ class Ships < Application
   protected
     def update_ship_weapons(weapon_type)
       weapon = weapon_type.to_sym
-      if params[weapon] && params[weapon][:number] != ''
+      if params[weapon] && params[weapon][:number] != '' 
+        number = params[weapon][:number].to_i
+        available_whatevers = @ship.send("available_#{weapon_type.pluralize}") 
+        number = number > available_whatevers ? available_whatevers : number
+        return if number == 0
         klass = Object.full_const_get(weapon_type.capitalize)
-        @weapon_type = klass.new(params[weapon])
-        @ship.send(weapon_type.pluralize) << @weapon_type
-        @weapon_type.save
+
+        @weapon_type = klass.first(:ship_id => @ship.id, 
+          :weapon_id => params[weapon][:weapon_id], :size => params[weapon][:size])
+        if @weapon_type.nil? 
+          @weapon_type = klass.new(params[weapon])
+          @weapon_type.number = number
+          @weapon_type.save
+          @ship.send(weapon_type.pluralize) << @weapon_type
+        else
+          @weapon_type.number += number 
+          @weapon_type.save
+        end
       end   
     end
     

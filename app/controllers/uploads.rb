@@ -2,6 +2,9 @@ class Uploads < Application
 
   def index
     @uploads = Upload.all
+    @uploads.each do |upload|
+      upload.thumbnail('thumb','120x80')
+    end
     display @uploads
   end
   
@@ -33,7 +36,14 @@ class Uploads < Application
   end
   
   def import
-    
+    dir = File.join Merb.root, 'public', 'import'
+    @files = Dir[File.join(dir, '*')].find_all{|file| file if File.file?(file)}
+    @files.each do |file|
+      upload = Upload.new
+      filename = File.basename(file)
+      upload.filename = filename
+      upload.process(file,filename)
+    end
     render
   end
 end

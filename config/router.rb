@@ -34,7 +34,11 @@ Merb::Router.prepare do
   resources :computers
   resources :configurations
   resources :ships
-  match('/uploads/import').to(:controller => 'uploads', :action =>'import')
+  match( 
+    :path => '/uploads/import', :method => 'post' 
+  ).to( 
+    :controller => 'uploads', :action =>'import'
+  ) 
   resources :uploads 
   
   

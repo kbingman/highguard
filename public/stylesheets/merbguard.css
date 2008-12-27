@@ -126,14 +126,22 @@ ul {
   ul li {
     float: left;
     margin: 0 5px 5px 0;
-    padding: 0; }
-    ul li img {
+    padding: 0;
+    background-color: #eee; }
+    ul li a {
       margin: 0;
       padding: 0;
-      width: 42px;
-      height: 42px;
       display: block;
-      float: left; }
+      float: left;
+      width: 107px;
+      height: 80px;
+      text-indent: -10000px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: transparent;
+      overflow: hidden; }
+      ul li a:hover {
+        background-color: transparent; }
 
 .clear {
   clear: both; }

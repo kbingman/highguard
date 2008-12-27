@@ -31,7 +31,7 @@ class Upload
         
     # Copy the file to the destination 
     FileUtils.mkdir_p(File.dirname(self.path)) 
-    FileUtils.cp(temp, self.path)
+    FileUtils.mv(temp, self.path)
     create_thumbnail('thumb','120x80')
     create_thumbnail('icon','42x42',{:crop => true})
   end

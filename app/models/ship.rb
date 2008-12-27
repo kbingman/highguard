@@ -170,8 +170,18 @@ class Ship
   end
   
   def available_hardpoints
-    (tonnage / 100) - total_barbettes - total_turrets
+    (tonnage / 100) -total_bays - total_barbettes - total_turrets
   end
+  
+  def available_turrets
+    (tonnage / 100) -total_bays - total_barbettes - total_turrets
+  end
+  
+  def available_barbettes
+    (tonnage / 100) -total_bays - total_barbettes - total_turrets
+  end
+  
+  
   
   def to_pdf_
     Prawn::Document.new do   

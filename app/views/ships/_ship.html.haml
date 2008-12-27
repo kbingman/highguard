@@ -65,14 +65,19 @@
       Tons
     %td.price
       =# @ship.bridge_price
-  - @ship.bays.each do |bay|
-    %tr
-      %td.label 
-        = bay.name
-        Bays
-      %td.info= bay.number
-      %td.tonnage
-      %td.price   
+  %tr
+    %td.label Hardpoints:
+    %td.info
+      = @ship.hardpoints
+      = '/'
+      = @ship.available_hardpoints
+    %td.tonnage
+    %td.price
+      =# @ship.bridge_price
+      
+  = partial :show_weapon, :format => :html, :weapon_type => 'bays'
+  = partial :show_weapon, :format => :html, :weapon_type => 'barbettes'
+  = partial :show_weapon, :format => :html, :weapon_type => 'turrets'
 
   %tr
     %td.label Staterooms:
