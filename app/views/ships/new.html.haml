@@ -5,9 +5,28 @@
   = error_messages_for @ship
 
   = form_for(@ship, :action => url(:ships) ) do
-    %table
-      = partial :form
+    .left.wide
+      #shipInfo
+        %p
+          %label Class Name:
+          = text_field :name, :class => 'trigger title'
+      .wide.left.first
+        %p
+          %label Description:
+          = text_area :description
       %tr
         %td
           %label &nbsp;
           = submit "Create"
+    .narrow.right.last
+      %p
+        %label Tech Level
+        %select.trigger{ :name => "ship[tech_level]" }
+          = tech_level_select
+      %p
+        %label{ :for => 'ship_configuration' } Configuration:
+        = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
+      %p
+        %label Tonnage:
+        = text_field :tonnage, :class => 'trigger'
+  .clear

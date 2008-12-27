@@ -6,37 +6,48 @@ body {
   background: #eee; }
 
 .container {
-  width: 940px;
+  width: 950px;
   margin: 0 auto;
-  padding: 10px;
-  background: #fff url('/images/body.png') repeat-y; }
+  padding: 0 10px 18px;
+  background: #fff; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.wide {
+  width: 630px;
+  padding: 0 10px 0 0; }
+  .wide.first {
+    width: 620px; }
+
+.narrow {
+  width: 320px;
+  padding: 0 0; }
+  .narrow.first {
+    clear: left; }
+  .narrow.last {
+    width: 310px; }
+
+.verynarrow {
+  width: 160px;
+  padding: 0 0; }
+  .verynarrow.first {
+    clear: left; }
+  .verynarrow.last {
+    width: 150px; }
+
+.clearright {
+  clear: right; }
 
 a {
   color: #4d9b12;
-  background-color: #fff;
   text-decoration: none; }
   a:hover {
     color: #4d9b12;
-    background-color: #fff;
     text-decoration: underline; }
-
-.right {
-  float: right;
-  font-size: 100%;
-  margin-top: 5px;
-  color: #999;
-  background-color: #fff; }
-
-.left {
-  float: left;
-  font-size: 100%;
-  margin-top: 5px;
-  color: #999;
-  background-color: #fff; }
-
-#main-container ul {
-  margin-left: 3.0em; }
-
 
 p.add label {
   display: block;
@@ -44,69 +55,94 @@ p.add label {
   text-align: left; }
 
 
+h1 {
+  font-size: 1.5em;
+  padding-top: 0;
+  margin: 0 0 9px 0;
+  font-weight: bold; }
+
 h2 {
   font-size: 1em;
-  padding-top: 18px 0 3px 0;
-  border-bottom: 2px solid #ccc;
-  color: #777;
+  padding-top: 0;
+  margin: 0 0 9px 0;
   font-weight: bold; }
+
+#info {
+  padding: 18px 0 0 0; }
 
 #ship {
   float: right;
   display: none; }
 
-table th {
-  text-align: left;
-  padding-top: 18px;
-  padding-left: 0;
-  padding-bottom: 3px;
-  border-bottom: 2px solid #ccc;
-  color: #777;
-  font-weight: bold; }
-  table th.ep {
-    padding-right: 12px;
-    text-align: right; }
-  table th .info {
-    font-weight: normal;
-    font-style: italic; }
-table td {
-  padding: 0;
-  padding-right: 12px;
-  vertical-align: top; }
-  table td.info {
-    text-align: right; }
-  table td.tech_level {
-    text-align: right;
-    padding: 0; }
-  table td.tonnage {
-    width: 100px;
-    text-align: right; }
-  table td.price {
-    padding-left: 12px;
-    text-align: right; }
-  table td.price span {
-    padding-right: 12px;
-    float: left; }
+#weapons select {
+  width: 8.5em;
+  margin: 0 4px 0 0; }
+#weapons input.text {
+  width: 3em; }
 
+table {
+  width: 100%; }
+  table th {
+    text-align: left;
+    padding-top: 18px;
+    padding-left: 0;
+    padding-bottom: 3px;
+    border-bottom: 2px solid #ccc;
+    color: #777;
+    font-weight: bold; }
+    table th.ep {
+      padding-right: 12px;
+      text-align: right; }
+    table th .info {
+      font-weight: normal;
+      font-style: italic; }
+  table td {
+    padding: 0;
+    padding-right: 12px;
+    vertical-align: top;
+    border-top: 1px solid #ddd; }
+    table td.info {
+      text-align: right; }
+    table td.tech_level {
+      text-align: right;
+      padding: 0; }
+    table td.tonnage {
+      width: 100px;
+      text-align: right; }
+    table td.price {
+      padding-left: 12px;
+      text-align: right; }
+    table td.price span {
+      display: none;
+      padding-right: 0;
+      float: left; }
+
+form p {
+  margin: 0 0 9px 0; }
 form label {
-  display: inline-block;
-  width: 100px;
-  text-align: right; }
+  display: block;
+  text-align: left; }
 form input.text {
   border: 1px solid #888;
-  height: 18px;
+  height: 16px;
   padding: 2px;
-  width: 180px; }
+  width: 136px; }
+form input.title {
+  border: 1px solid #888;
+  height: 28px;
+  padding: 2px;
+  width: 620px;
+  font-size: 24px; }
 form input.number {
   width: 50px;
   text-align: right; }
 form textarea {
   border: 1px solid #888;
-  height: 48px;
-  width: 300px;
+  height: 38px;
+  width: 620px;
   padding: 2px; }
 form select {
-  width: 120px; }
+  width: 140px; }
   form select.number {
     width: 60px; }
 

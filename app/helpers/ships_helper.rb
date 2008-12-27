@@ -74,7 +74,7 @@ module Merb
       case name
         when 'bay'      : fields = [['50','50 Tons'],['100','100 Tons']]
         when 'turret'   : fields = [['Triple','Triple'],['Double','Double'],['Single','Single']]
-        when 'barbette' : fields = [['5','Standard (5 Ton)']]
+        when 'barbette' : fields = [['5','5 Tons']]
       end
       result = ''
       fields.each do |field|

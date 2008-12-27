@@ -16,6 +16,7 @@ class Ship
   property :thrust,         Integer
   property :power,          Integer
   property :price,          Integer
+  property :nothing,        Boolean
   
   property :created_at,     DateTime
   property :updated_at,     DateTime
@@ -109,6 +110,10 @@ class Ship
     tonnage * self.configuration.modifier * 0.1
   end
   
+  def ep
+    tonnage * power * 0.01
+  end
+  
   def hardpoints
     tonnage / 100
   end
@@ -169,6 +174,10 @@ class Ship
     total_barbettes
   end
   
+  def fire_control 
+    total_barbettes + total_bays
+  end
+  
   def available_hardpoints
     (tonnage / 100) -total_bays - total_barbettes - total_turrets
   end
@@ -181,42 +190,24 @@ class Ship
     (tonnage / 100) -total_bays - total_barbettes - total_turrets
   end
   
-  
-  
-  def to_pdf_
-    Prawn::Document.new do   
-      bounding_box [100,600], :width => 200 do
-        text "The rain in spain falls mainly on the plains " * 5
-        stroke do
-          line bounds.top_left,    bounds.top_right
-          line bounds.bottom_left, bounds.bottom_right
-        end
-      end
-
-      bounding_box [100,500], :width => 200, :height => 200 do
-        stroke do
-          circle_at [100,100], :radius => 100
-          line bounds.top_left, bounds.bottom_right
-          line bounds.top_right, bounds.bottom_left
-        end   
-
-        bounding_box [50,150], :width => 100, :height => 100 do
-          stroke_rectangle bounds.top_left, bounds.width, bounds.height
-        end   
-      end
-    end.render
-    send_file pdf, :filename => "#{self.name}.pdf", :type => "application/pdf"
+  def total_price
+    hull_price + 
+    jump_price +
+    thrust_price + 
+    powerplant_price
   end
   
   def subtotal_tonnage
     bridge + 
     stateroom_tonnage +
     powerplant_tonnage + 
+    powerplant_fuel +
     thrust_tonnage + 
     jump_tonnage + 
     jump_fuel +
     bay_tonnage +
     barbette_tonnage +
+    fire_control +
     turret_tonnage
   end
   

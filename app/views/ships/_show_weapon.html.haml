@@ -1,17 +1,18 @@
-- if !@ship.send(weapon_type).empty?
-  %h2
-    = weapon_type.capitalize
+- if !ship.send(weapon_type).empty?
+  %tr
+    %td{ :colspan => "4" }
+      %strong
+        = weapon_type.capitalize
     
-- @ship.send(weapon_type).each do |weapon|
-  %p
-    %span.label 
+- ship.send(weapon_type).each do |weapon|
+  %tr
+    %td.label 
       = weapon.name.pluralize
-    %span.info
+    %td.info
       = weapon.number
-    %span.tonnage
+    %td.tonnage
       = weapon.tonnage
       Tons
-    %span.price
-    %span
+    %td.price
       - delete_link = ("delete_#{weapon_type.singularize}").to_sym
       = link_to "delete", url(delete_link, weapon), :class => 'delete', :method => 'delete'

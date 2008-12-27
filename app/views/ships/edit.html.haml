@@ -1,25 +1,13 @@
-// %h1= @ship.name
-  
-#navigation
-  = link_to 'Show', url(:ship, @ship)
-  |
-  = link_to 'Index', url(:ships)
-
-= error_messages_for @ship
+// #navigation
+//   = link_to 'Show', url(:ship, @ship)
+//   |
+//   = link_to 'Index', url(:ships)
 
 #info
+  = error_messages_for @ship
   = form_for(@ship, :action => url(:ship, @ship)) do
     = partial :form
-    %p
-      %label &nbsp;
+    %p.clear
       = submit "Update"
-
-#ship
-  %table{ :cellspacing => "0" } 
-    = partial :ship
-    
-// = link_to 'Show', url(:ship, @ship)
-// |
-/  = link_to 'Back', url(:ships)
 
 .clear
