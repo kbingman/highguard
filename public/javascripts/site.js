@@ -3,7 +3,7 @@
 
 $(document).ready(function(){
   
-  $('select.trigger, input.trigger')
+  $('#info form .trigger')
     .livequery('change', function(){ 
       var $form = $('#info form');
       var url = $form.attr('action') + '.js'

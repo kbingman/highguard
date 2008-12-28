@@ -9,6 +9,11 @@
   %td.info{ :colspan => "3" }
     %strong
       = @ship.configuration.name
+%tr 
+  %td.label Energy Points
+  %td.info{ :colspan => "3" }
+    %strong
+      = commify(@ship.ep)
     
 %tr
   %td{ :colspan => "4" }
@@ -23,6 +28,17 @@
   %td.price
     %span MCr
     = commify(@ship.hull_price) unless @ship.new_record?
+
+- if @ship.armor  
+  %tr
+    %td.label= "#{@ship.armor.name} Armor:"
+    %td.info= commify(@ship.armor_rating)
+    %td.tonnage
+      = commify(@ship.armor_tonnage)
+      Tons
+    %td.price
+      %span MCr
+      = commify(@ship.armor_price) 
 
 - unless @ship.new_record?
   %tr
@@ -52,6 +68,7 @@
     %td.price
       %span MCr
       = commify(@ship.thrust_price)
+    
   %tr
     %td.label Bridge:
     %td.info
@@ -59,13 +76,13 @@
       = commify(@ship.bridge)
       Tons
     %td.price
-      =# @ship.bridge_price
+      = commify(@ship.bridge_price)
   %tr
     %td{ :colspan => "4" }
       &nbsp;
   %tr
     %td.label Hardpoints:
-    %td{ :colspan => "3" }
+    %td.info{ :colspan => "3" }
       = @ship.hardpoints
       total
       = '/'
@@ -83,7 +100,6 @@
   = partial :show_weapon, :format => :html, :weapon_type => 'barbettes', :ship => @ship
   = partial :show_weapon, :format => :html, :weapon_type => 'turrets', :ship => @ship
 
-  
   %tr
     %td{ :colspan => "4" }
       &nbsp;
@@ -94,7 +110,7 @@
       = commify(@ship.stateroom_tonnage)
       Tons
     %td.price
-      =# @ship.stateroom_price
+      = commify(@ship.stateroom_price)
   %tr
     %td{ :colspan => "4" }
       &nbsp;

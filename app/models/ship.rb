@@ -4,6 +4,7 @@ class Ship
   include DataMapper::Resource
   
   before :save, :check_drives
+  before :save, :check_armor
 
   property :id,             Serial # primary serial key
   property :name,           String
@@ -16,12 +17,15 @@ class Ship
   property :thrust,         Integer
   property :power,          Integer
   property :price,          Integer
-  property :nothing,        Boolean
+  property :armor_rating,   Integer 
+  property :troops,         Integer
   
   property :created_at,     DateTime
   property :updated_at,     DateTime
   
   belongs_to :configuration
+  belongs_to :armor
+  
   # belongs_to :computer
   
   has n, :bays
@@ -29,6 +33,34 @@ class Ship
   has n, :barbettes
   
   validates_present :name
+  
+  def armor_tonnage
+    if self.armor
+      armor_name = self.armor.name
+      case 
+        when armor_name == 'Titanium Steel' : percentage = 0.025
+        when armor_name == 'Crystaliron'    : percentage = 0.0125
+        when armor_name == 'Superdense'     : percentage = 0.008333333333333
+      end
+      (tonnage * (percentage) * armor_rating).to_i
+    else
+      0
+    end
+  end
+  
+  def armor_price
+    if self.armor
+      armor_name = self.armor.name
+      case 
+        when armor_name == 'Titanium Steel' : percentage = 0.01
+        when armor_name == 'Crystaliron'    : percentage = 0.04
+        when armor_name == 'Superdense'     : percentage = 0.083333333333
+      end
+      (hull_price * percentage * armor_rating).to_i
+    else
+      0
+    end
+  end
   
   def max_jumpdrive
     max_jump = tech_level - 9
@@ -97,9 +129,17 @@ class Ship
     staterooms ? staterooms * 4 : 0
   end
   
+  def stateroom_price
+    staterooms ? staterooms * 0.5 : 0
+  end
+    
   def bridge
     bridge = tonnage * 0.02
     (bridge > 20) ? bridge : 20
+  end
+  
+  def bridge_price
+    tonnage * 0.005
   end
   
   def ep
@@ -190,11 +230,31 @@ class Ship
     (tonnage / 100) -total_bays - total_barbettes - total_turrets
   end
   
+  def command_crew
+    tonnage > 10000 ? (tonnage / 10000) * 5 : 5
+  end
+  
+  def engineering_crew
+    ((jump_tonnage + thrust_tonnage + thrust_tonnage)/100).to_i
+  end
+  
+  def gunnery_crew
+    (total_bays * 2) +
+    (total_turrets + total_barbettes)/10
+  end
+  
+  def service_crew
+    troops ? (tonnage / 1000) * 2 : (tonnage / 1000) * 3
+  end
+  
   def total_price
     hull_price + 
+    armor_price +
     jump_price +
     thrust_price + 
-    powerplant_price
+    powerplant_price +
+    bridge_price +
+    stateroom_price
   end
   
   def subtotal_tonnage
@@ -208,7 +268,8 @@ class Ship
     bay_tonnage +
     barbette_tonnage +
     fire_control +
-    turret_tonnage
+    turret_tonnage +
+    armor_tonnage
   end
   
   private
@@ -220,6 +281,11 @@ class Ship
        required_power = thrust > jumpdrive ? thrust : jumpdrive
        self.power = required_power unless power > required_power
      end
+   end
+   def check_armor
+     if armor_id && armor_rating.nil?
+       self.armor_rating = 1
      end
+   end
 
 end

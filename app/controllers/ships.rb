@@ -54,6 +54,7 @@ class Ships < Application
     provides :html, :js
     @ship = Ship.get(id)
     @configurations = Configuration.all
+    @ship.armor_id = params[:ship][:armor_id]
     
     raise NotFound unless @ship
     

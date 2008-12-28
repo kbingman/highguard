@@ -6,7 +6,7 @@
   .wide.left.first
     %p
       %label Description
-      = text_area :description
+      = text_area :description, :class => 'trigger'
   
   #weapons.narrow.right.last
     %h2 Weapons Systems    
@@ -41,11 +41,33 @@
         %label Maneuver Drive
         %select.trigger{ :name => "ship[thrust]", :class => "input"}
           = drive_select('thrust')
+    .verynarrow.left.first
+      %p
+        %label Armor Type
+        %select.trigger{ :name => "ship[armor_id]" }
+          = armor_select(@ship.tech_level)
+    .verynarrow.left.last
+      %p
+        %label Armor Rating
+        %select.trigger{ :name => "ship[armor_rating]" }
+          = armor_rating_select(@ship.tech_level)
             
     #command.narrow.left.first
       %h2 Command and Electronics
     #crew.narrow.left.last
       %h2 Crew
+      %p 
+        Command Crew
+        = @ship.command_crew
+        %br
+        Engineering Crew
+        = @ship.engineering_crew
+        %br
+        Gunnery Crew
+        = @ship.gunnery_crew
+        %br
+        Service Crew
+        = @ship.service_crew
       .edit
         %p
           %label Staterooms
