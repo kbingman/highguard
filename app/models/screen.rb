@@ -4,6 +4,4 @@ class Screen
   property :id, Serial
   property :name, String
   
-
-
 end

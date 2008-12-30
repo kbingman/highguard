@@ -1,4 +1,8 @@
 .left.wide
+  - if !message[:error].nil?
+    .error
+      = message[:error]
+  = error_messages_for @ship
   #shipInfo
     %p
       %label Class Name
@@ -22,7 +26,7 @@
         = tech_level_select
     %p
       %label{ :for => 'ship_configuration' } Configuration:
-      = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
+      = select :configuration_id, :collection => Configuration.all.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
     %p
       %label Tonnage
       = text_field :tonnage, :class => 'trigger'
@@ -54,7 +58,12 @@
             
     #command.narrow.left.first
       %h2 Command and Electronics
-    #crew.narrow.left.last
+      %p
+        %label{ :for => 'ship_configuration' } Computer:
+        %select.trigger{ :name => "ship[computer_id]" }
+          = computer_select
+        / = select :computer_id, :collection => Computer.all.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
+    #crew.verynarrow.left
       %h2 Crew
       %p 
         Command Crew
@@ -68,10 +77,14 @@
         %br
         Service Crew
         = @ship.service_crew
-      .edit
-        %p
-          %label Staterooms
-          = text_field :staterooms, :class => 'trigger'
+    #staterooms.verynarrow.left.last
+      %h2 Staterooms
+      %p
+        %label Staterooms
+        = text_field :staterooms, :class => 'trigger'
+      %p
+        %label Troops
+        = text_field :troops, :class => 'trigger'
 
 .narrow.right.last
   %h2

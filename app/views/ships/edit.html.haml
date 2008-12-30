@@ -4,7 +4,6 @@
 //   = link_to 'Index', url(:ships)
 
 #info
-  = error_messages_for @ship
   = form_for(@ship, :action => url(:ship, @ship)) do
     = partial :form
     %p.clear

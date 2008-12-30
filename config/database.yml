@@ -20,7 +20,7 @@ development: &defaults
 
 rake:
   <<:       *defaults
-  database: highguard_import
+  database: highguard_merb_dev
 
   # repositories:
   #   repo1:

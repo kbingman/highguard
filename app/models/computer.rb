@@ -1,14 +1,13 @@
 class Computer
   include DataMapper::Resource
-  
+
   property :id, Serial
-  property :model, String
-  property :tonnage, Integer
-  property :capacity, String
+  property :name, String
+  property :jump_minimum, Integer
+  property :rating, Integer
   property :tech_level, Integer
-  
-  property :created_at,     DateTime
-  property :updated_at,     DateTime
-  
+  property :price, Integer
+    
   has n, :ships
+      
 end

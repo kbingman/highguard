@@ -78,6 +78,12 @@
     %td.price
       = commify(@ship.bridge_price)
   %tr
+    %td.label Computer:
+    %td.info= @ship.computer.name
+    %td.tonnage
+    %td.price
+      = commify(@ship.computer.price)
+  %tr
     %td{ :colspan => "4" }
       &nbsp;
   %tr

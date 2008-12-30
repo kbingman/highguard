@@ -40,10 +40,10 @@ module Merb
     
     def drive_select(attribute)
       result = ''
-      6.times do |i|
-        unless i + 1 > @ship.send("max_#{attribute}")
-          selected = (@ship.send(attribute) == i + 1) ? ' selected="selected"':''
-          result += "<option#{selected}>#{i + 1}</option>\n"
+      7.times do |i|
+        unless i > @ship.send("max_#{attribute}")
+          selected = (@ship.send(attribute) == i) ? ' selected="selected"':''
+          result += "<option#{selected}>#{i}</option>\n"
         end
       end
       result
@@ -88,7 +88,7 @@ module Merb
     def weapon_select(name)
       result = ''
       Weapon.all.each do |weapon|
-        result += "<option value='#{weapon.id}'>#{weapon.name}</option>\n" unless weapon.send(name) == false
+        result += "<option value='#{weapon.id}'>#{weapon.name}</option>\n" if weapon.send(name) == true && weapon.tech_level <= @ship.tech_level
       end
       result
     end
@@ -102,6 +102,15 @@ module Merb
       result = ''
       fields.each do |field|
         result += "<option value='#{field[0]}'>#{field[1]}</option>\n" 
+      end
+      result
+    end
+    
+    def computer_select
+      result = ''
+      Computer.all.each do |computer|
+        selected = @ship.computer == computer ? ' selected="selected"':''
+        result += "<option value='#{computer.id}'#{selected}>#{computer.name}</option>" unless computer.jump_minimum < @ship.jumpdrive
       end
       result
     end

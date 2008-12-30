@@ -25,7 +25,7 @@
           = tech_level_select
       %p
         %label{ :for => 'ship_configuration' } Configuration:
-        = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
+        = select :configuration_id, :collection => Configuration.all.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
       %p
         %label Tonnage:
         = text_field :tonnage, :class => 'trigger'

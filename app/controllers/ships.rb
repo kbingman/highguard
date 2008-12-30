@@ -15,8 +15,12 @@ class Ships < Application
  
     case content_type 
     when :pdf
-      pdf = generate_pdf
-      send_file pdf, :file_name => "#{@ship.name}.pdf", :type => 'application/pdf', :disposition => 'inline'
+      pdf = Prawn::Document.new do
+        font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
+        text "tesr" * 20
+      end
+      # send_file pdf, :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
+      send_data pdf.render, :filename => "#{@ship.name}.pdf", :type => 'application/pdf', :disposition => 'inline'
     else 
       display @ship
     end
@@ -34,7 +38,6 @@ class Ships < Application
     only_provides :html
     @ship = Ship.get(id)
     @title = @ship.name
-    @configurations = Configuration.all
     @weapons = Weapon.all
     raise NotFound unless @ship
     display @ship
@@ -42,6 +45,7 @@ class Ships < Application
 
   def create(ship)
     @ship = Ship.new(ship)
+    @ship.computer = Computer.first
     if @ship.save
       redirect url(:edit_ship, @ship), :message => {:notice => "Ship was successfully created"}
     else
@@ -71,7 +75,13 @@ class Ships < Application
         redirect resource(@ship, :edit)
       end
     else
-      display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
+      case content_type 
+      when :js
+        display @ship, :message => {:error => "There was a problem updating the ship."}
+      else 
+        display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
+      end
+      
     end
   end
 
@@ -111,12 +121,11 @@ class Ships < Application
     end
     
     def generate_pdf
-      pdf = Prawn::Document.new do |p| 
-        p.text 'Document Name', :align => 'center' 
-        p.text 'Address: address' 
-        p.text 'text end' 
-      end.render_file "/Users/keith/Merb/highguard/public/#{@ship}.pdf"
-      send_file pdf, :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
+      pdf = Prawn::Document.generate("utf8.pdf") do
+        font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
+        text "test " * 20
+      end
+      send_file "utf8.pdf", :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
     end
 
 end # Ships
