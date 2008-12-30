@@ -1,55 +1,37 @@
 --- 
-- :created_at: 2008-12-09T08:46:45+01:00
+- :modifier: 1.2
   :name: Needle/Wedge
-  :streamlined: streamlined
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 1.2
   :id: 2
-- :created_at: 2008-12-09T08:46:45+01:00
+  :streamlined: streamlined
+- :modifier: 1.1
   :name: Cone
-  :streamlined: streamlined
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 1.1
   :id: 3
-- :created_at: 2008-12-09T08:46:45+01:00
-  :name: Cylinder
-  :streamlined: partial
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 1.0
-  :id: 4
-- :created_at: 2008-12-09T08:46:45+01:00
-  :name: Close Structure
-  :streamlined: partial
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 0.6
-  :id: 5
-- :created_at: 2008-12-09T08:46:45+01:00
-  :name: Sphere
-  :streamlined: partial
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 0.7
-  :id: 6
-- :created_at: 2008-12-09T08:46:45+01:00
-  :name: Flattened Sphere
   :streamlined: streamlined
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 0.8
+- :modifier: 1.0
+  :name: Cylinder
+  :id: 4
+  :streamlined: partial
+- :modifier: 0.6
+  :name: Close Structure
+  :id: 5
+  :streamlined: partial
+- :modifier: 0.7
+  :name: Sphere
+  :id: 6
+  :streamlined: partial
+- :modifier: 0.8
+  :name: Flattened Sphere
   :id: 7
-- :created_at: 2008-12-09T08:46:45+01:00
+  :streamlined: streamlined
+- :modifier: 0.5
   :name: Dispersed Structure
-  :streamlined: non-streamlined
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 0.5
   :id: 8
-- :created_at: 2008-12-09T08:46:45+01:00
+  :streamlined: non-streamlined
+- :modifier: 0.0
   :name: Planetoid
-  :streamlined: non-streamlined
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 0.0
   :id: 9
-- :created_at: 2008-12-09T08:46:45+01:00
-  :name: Buffered Planetoid
   :streamlined: non-streamlined
-  :updated_at: 2008-12-09T08:46:45+01:00
-  :modifier: 0.0
+- :modifier: 0.0
+  :name: Buffered Planetoid
   :id: 10
+  :streamlined: non-streamlined

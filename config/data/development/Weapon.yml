@@ -1,85 +1,91 @@
 --- 
-- :created_at: 2008-12-12T08:24:32+01:00
-  :barbette: true
-  :min_tech_level: 9
-  :turret_price: 
+- :turret_price: 
+  :turret: false
+  :tech_level: 9
+  :barbette_price: 
+  :bay_price_100: 
+  :bay: true
   :name: Railgun
-  :barbette_price: 
-  :turret: false
-  :updated_at: 2008-12-12T08:24:37+01:00
-  :bay_price_100: 
   :bay_price_50: 
-  :bay: true
+  :barbette: true
   :id: 1
-- :created_at: 2008-12-12T08:38:24+01:00
-  :barbette: false
-  :min_tech_level: 8
-  :turret_price: 1.0
-  :name: Laser
-  :barbette_price: 
+- :turret_price: 1.0
   :turret: true
-  :updated_at: 2008-12-12T08:38:55+01:00
+  :tech_level: 8
+  :barbette_price: 
   :bay_price_100: 
-  :bay_price_50: 
   :bay: false
+  :name: Pulse Laser
+  :bay_price_50: 
+  :barbette: false
   :id: 2
-- :created_at: 2008-12-12T21:31:40+01:00
-  :barbette: false
-  :min_tech_level: 7
-  :turret_price: 0.75
+- :turret_price: 0.75
+  :turret: true
+  :tech_level: 6
+  :barbette_price: 
+  :bay_price_100: 
+  :bay: true
   :name: Missle
-  :barbette_price: 
-  :turret: true
-  :updated_at: 2008-12-12T21:31:45+01:00
-  :bay_price_100: 
   :bay_price_50: 
-  :bay: true
+  :barbette: false
   :id: 3
-- :created_at: 2008-12-12T21:32:42+01:00
-  :barbette: false
-  :min_tech_level: 8
-  :turret_price: 
+- :turret_price: 
+  :turret: false
+  :tech_level: 11
+  :barbette_price: 
+  :bay_price_100: 
+  :bay: true
   :name: Meson Gun
-  :barbette_price: 
-  :turret: false
-  :updated_at: 2008-12-12T21:32:42+01:00
-  :bay_price_100: 
   :bay_price_50: 
-  :bay: true
-  :id: 4
-- :created_at: 2008-12-12T21:47:27+01:00
   :barbette: false
-  :min_tech_level: 7
-  :turret_price: 0.25
-  :name: Sandcaster
-  :barbette_price: 
+  :id: 4
+- :turret_price: 0.25
   :turret: true
-  :updated_at: 2008-12-12T21:47:27+01:00
+  :tech_level: 7
+  :barbette_price: 
   :bay_price_100: 
-  :bay_price_50: 
   :bay: false
+  :name: Sandcaster
+  :bay_price_50: 
+  :barbette: false
   :id: 5
-- :created_at: 2008-12-13T11:21:20+01:00
-  :barbette: true
-  :min_tech_level: 9
-  :turret_price: 
-  :name: Torpedo
-  :barbette_price: 
+- :turret_price: 
   :turret: false
-  :updated_at: 2008-12-13T11:21:20+01:00
+  :tech_level: 9
+  :barbette_price: 
   :bay_price_100: 
-  :bay_price_50: 
   :bay: true
-  :id: 6
-- :created_at: 2008-12-27T11:21:20+01:00
+  :name: Torpedo
+  :bay_price_50: 
   :barbette: true
-  :min_tech_level: 8
-  :turret_price: 3.0
-  :name: Particle Accelerator
-  :barbette_price: 4.0
+  :id: 6
+- :turret_price: 3.0
   :turret: true
-  :updated_at: 2008-12-27T11:21:20+01:00
+  :tech_level: 8
+  :barbette_price: 4.0
   :bay_price_100: 
-  :bay_price_50: 
   :bay: true
+  :name: Particle Accelerator
+  :bay_price_50: 
+  :barbette: true
   :id: 7
+- :turret_price: 
+  :turret: true
+  :tech_level: 8
+  :barbette_price: 
+  :bay_price_100: 
+  :bay: false
+  :name: Beam Laser
+  :bay_price_50: 
+  :barbette: false
+  :id: 8
+- :turret_price: 
+  :turret: true
+  :tech_level: 8
+  :barbette_price: 
+  :bay_price_100: 
+  :bay: false
+  :name: Pulse Laser
+  :bay_price_50: 
+  :barbette: false
+  :id: 9

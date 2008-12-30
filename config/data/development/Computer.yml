@@ -1,2 +1,43 @@
---- []
-
+--- 
+- :tech_level: 9
+  :jump_minimum: 2
+  :name: Core 3
+  :rating: 40
+  :price: 12
+  :id: 1
+- :tech_level: 10
+  :jump_minimum: 2
+  :name: Core 4
+  :rating: 50
+  :price: 20
+  :id: 2
+- :tech_level: 11
+  :jump_minimum: 3
+  :name: Core 5
+  :rating: 60
+  :price: 30
+  :id: 3
+- :tech_level: 12
+  :jump_minimum: 4
+  :name: Core 6
+  :rating: 70
+  :price: 50
+  :id: 4
+- :tech_level: 13
+  :jump_minimum: 5
+  :name: Core 7
+  :rating: 80
+  :price: 70
+  :id: 5
+- :tech_level: 14
+  :jump_minimum: 6
+  :name: Core 8
+  :rating: 90
+  :price: 100
+  :id: 6
+- :tech_level: 15
+  :jump_minimum: 6
+  :name: Core 9
+  :rating: 100
+  :price: 130
+  :id: 7
