@@ -1,0 +1,19 @@
+--- 
+- :max: 9
+  :tech_level: 7
+  :protection: 2
+  :name: Titanium Steel
+  :cost: 5
+  :id: 1
+- :max: 13
+  :tech_level: 10
+  :protection: 4
+  :name: Crystaliron
+  :cost: 20
+  :id: 2
+- :max: 15
+  :tech_level: 14
+  :protection: 6
+  :name: Superdense
+  :cost: 50
+  :id: 3

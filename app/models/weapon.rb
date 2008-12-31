@@ -6,11 +6,16 @@ class Weapon
   property :min_tech_level, Integer
   
   property :turret, Boolean
-  property :bay, Boolean
   property :barbette, Boolean
+  property :bay, Boolean
   
-  property :created_at,     DateTime
-  property :updated_at,     DateTime
+  property :turret_price, Float
+  property :barbette_price, Float
+  property :bay_price_100, Float
+  property :bay_price_50, Float
+  
+  property :created_at, DateTime
+  property :updated_at, DateTime
 
   has n, :bays
   has n, :turrets

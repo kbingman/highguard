@@ -1,8 +1,11 @@
 require 'rubygems'
-require 'rake/rdoctask'
-
+require 'rake/gempackagetask'
+ 
 require 'merb-core'
 require 'merb-core/tasks/merb'
+ 
+dependency 'dm-core'
+dependency 'merb_datamapper'
 
 include FileUtils
 

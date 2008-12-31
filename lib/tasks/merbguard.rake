@@ -8,9 +8,7 @@ desc "Print all classes that include DataMapper::Resource."
 namespace :db do
   
   def interesting_tables
-    DataMapper::Resource.descendants.reject! do |table|
-      [Merb::DataMapperSessionStore].include?(table)
-    end
+    [Armor,Computer,Configuration,Screen,Weapon]
   end
 
   desc "Dump data from the current environment's DB."
@@ -22,7 +20,7 @@ namespace :db do
     interesting_tables.each do |table|
       puts "Dumping #{table}..."
 
-      File.open("#{table}.yml", 'w+') { |f| YAML.dump(table.all.inject({}) { |h, record| h[record.id.to_s] = record.attributes; h }, f) }
+      File.open("#{table}.yml", 'w+') { |f| YAML.dump(table.all.map{ |t| t.attributes}, f) }
     end
   end
 

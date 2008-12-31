@@ -1,12 +1,21 @@
-#tabs
-  #info
-    %h2 Class Name and Information
+.left.wide
+  #shipInfo
     %p
-      %label Class Name:
-      = text_field :name, :class => 'trigger'
+      %label Class Name
+      = text_field :name, :class => 'trigger title'
+  .wide.left.first
     %p
       %label Description
-      = text_area :description
+      = text_area :description, :class => 'trigger'
+  
+  #weapons.narrow.right.last
+    %h2 Weapons Systems    
+    = partial :weapons_form, :format => :html, :weapon_type => 'bay'
+    = partial :weapons_form, :format => :html, :weapon_type => 'barbette'
+    = partial :weapons_form, :format => :html, :weapon_type => 'turret'
+  .narrow.left.first
+    %h2 Drives and Power
+  .verynarrow.left.first
     %p
       %label Tech Level
       %select.trigger{ :name => "ship[tech_level]" }
@@ -15,52 +24,68 @@
       %label{ :for => 'ship_configuration' } Configuration:
       = select :configuration_id, :collection => @configurations.collect {|c| [ c.id, c.name ] }, :class => 'trigger'
     %p
-      %label Tonnage:
+      %label Tonnage
       = text_field :tonnage, :class => 'trigger'
-      
+  
   - unless @ship.new_record?
-    #drives
-      %h2 Drives and Power
+    #drives.verynarrow.left.last
       %p
         %label Power
         %select.trigger{ :name => "ship[power]" }
           = power_select(8)
       %p
-        %label{ :for => 'ship_jumpdrive' } Jump Drive:
+        %label{ :for => 'ship_jumpdrive' } Jump Drive
         %select.trigger{ :name => "ship[jumpdrive]" }
           = drive_select('jumpdrive')
       %p    
-        %label Maneuver Drive:
+        %label Maneuver Drive
         %select.trigger{ :name => "ship[thrust]", :class => "input"}
           = drive_select('thrust')
-          
-      %h2 Fuel Storage and Processing
-      
-
-    #command
-      %h2 Command and Electronics
-
-        
-    #weapons
-      %h2 Weapons Systems    
-  
-      = partial :bays, :format => :html
-      - unless @ship.available_bays <= 0
-        = partial :weapons_form, :format => :html, :weapon_type => 'bay'
-      = partial :weapons_form, :format => :html, :weapon_type => 'barbette'
-      
-      = partial :weapons_form, :format => :html, :weapon_type => 'turret'
-  
-      %h2 Ammunition
-        
-    #crew
-      %h2 Crew and Accommodations
-  
+    .verynarrow.left.first
       %p
-        %label Staterooms
-        = text_field :staterooms, :class => 'trigger'
+        %label Armor Type
+        %select.trigger{ :name => "ship[armor_id]" }
+          = armor_select(@ship.tech_level)
+    .verynarrow.left.last
+      %p
+        %label Armor Rating
+        %select.trigger{ :name => "ship[armor_rating]" }
+          = armor_rating_select(@ship.tech_level)
+            
+    #command.narrow.left.first
+      %h2 Command and Electronics
+    #crew.narrow.left.last
+      %h2 Crew
+      %p 
+        Command Crew
+        = @ship.command_crew
+        %br
+        Engineering Crew
+        = @ship.engineering_crew
+        %br
+        Gunnery Crew
+        = @ship.gunnery_crew
+        %br
+        Service Crew
+        = @ship.service_crew
+      .edit
+        %p
+          %label Staterooms
+          = text_field :staterooms, :class => 'trigger'
+
+.narrow.right.last
+  %h2
+    = @ship.name 
+    Summary
+  %table{ :cellspacing => "0" }
+    = partial :ship, :format => :html
 
 
 
-          
+    
+
+
+
+
+      
 

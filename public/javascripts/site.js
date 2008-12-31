@@ -3,20 +3,20 @@
 
 $(document).ready(function(){
   
-  $('#info select.trigger, #info input.trigger')
+  $('#info form .trigger')
     .livequery('change', function(){ 
       var $form = $('#info form');
       var url = $form.attr('action') + '.js'
       $form.ajaxSubmit({ 
         url:    url,
-        target: '#ship'
+        target: '#info'
       });
     });
   $('#info form').livequery('submit',function() {
     var url = $(this).attr('action') + '.js';
     $(this).ajaxSubmit({ 
       url:    url,
-      target: '#ship'
+      target: '#info'
     });
     return false;
   });
@@ -30,6 +30,11 @@ $(document).ready(function(){
     return false;
   });
   
+  $('a.editLink').click(function(){
+    var parent = $(this).parents('div:first');
+    parent.find('div.edit').toggle();
+  });
+  
   $('ul a')
     .css({opacity:0.5})
     .hover(
@@ -40,17 +45,6 @@ $(document).ready(function(){
        $(this).fadeTo('slow', 0.5);
       }
     );
-  
-  var tabContainers = $('#tabs > div');
-  
-  $('#tabNavigation a').click(function () {
-    tabContainers.hide().filter(this.hash).show();
-  
-    $('#tabNavigation a').removeClass('selected');
-    $(this).addClass('selected');
-  
-    return false;
-  }).filter(':first').click();
   
 });
 

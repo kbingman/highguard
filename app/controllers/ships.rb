@@ -54,24 +54,25 @@ class Ships < Application
     provides :html, :js
     @ship = Ship.get(id)
     @configurations = Configuration.all
+    @ship.armor_id = params[:ship][:armor_id]
+    
+    raise NotFound unless @ship
     
     # Saves the params of each type of weapons
     update_ship_weapons('bay')
     update_ship_weapons('barbette')
     update_ship_weapons('turret')
 
-    raise NotFound unless @ship
-    @ship.update_attributes(ship)
-    # if @ship.save
+    if @ship.update_attributes(ship)
       case content_type 
       when :js
         display @ship
       else 
         redirect resource(@ship, :edit)
       end
-    # else
-    #   display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
-    # end
+    else
+      display @ship, :edit, :message => {:notice => "There was a problem updating the ship."}
+    end
   end
 
   def destroy(id)
@@ -102,8 +103,9 @@ class Ships < Application
           @weapon_type.save
           @ship.send(weapon_type.pluralize) << @weapon_type
         else
-          @weapon_type.number += number 
+          @weapon_type.number =  @weapon_type.number + number 
           @weapon_type.save
+          @ship = Ship.get(@ship.id)
         end
       end   
     end
