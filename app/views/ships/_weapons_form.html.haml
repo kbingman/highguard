@@ -2,7 +2,7 @@
   %label= "Add #{weapon_type.pluralize.capitalize}"
   %select{ :name => "#{weapon_type}[weapon_id]" }
     = weapon_select("#{weapon_type}")
-  %select{ :name => "#{weapon_type}[size]" }
+  %select.number{ :name => "#{weapon_type}[size]" }
     = weapon_size_select("#{weapon_type}")
   %input.number{ :name => "#{weapon_type}[number]", :class => 'text' }
-  = submit "add"
+  %input{ :type => 'image', :src => '/images/add.png', :value => 'add', :class => 'add' } 

@@ -2,13 +2,22 @@
   Ships controller, index action
 
 %table
-  %tr
-  - @ships.each do |ship|
+  %thead
     %tr
-      %td
-        = link_to ship.name, url(:ship, ship)
-      %td
-        = link_to 'edit', url(:edit_ship, ship)
-        = link_to "delete", url(:delete_ship, ship), :class => 'delete', :method => 'delete'
+      %th Class Name
+      %th.tonnage Tonnage
+      %th Drives
+      %th{ :colspan => "2" } Modify
+  %tbody
+    - @ships.each do |ship|
+      %tr
+        %td
+          = link_to ship.name, url(:ship, ship)
+        %td.tonnage= ship.tonnage
+        %td= "J#{ship.jumpdrive} M#{ship.thrust} P#{ship.power}"
+        %td
+          = link_to 'edit', url(:edit_ship, ship)
+        %td
+          = link_to "delete", url(:delete_ship, ship), :class => 'delete', :method => 'delete'
 
 = link_to 'New', url(:new_ship)

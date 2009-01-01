@@ -17,6 +17,20 @@
     = partial :weapons_form, :format => :html, :weapon_type => 'bay'
     = partial :weapons_form, :format => :html, :weapon_type => 'barbette'
     = partial :weapons_form, :format => :html, :weapon_type => 'turret'
+    %label Ammunition
+    %select
+      %option Railgun
+      %option Torpedo
+      %option Missle
+    %select.number
+      %option 10
+      %option 20
+      %option 30
+      %option 40
+      %option 50
+      %option 60
+      %option 70
+      
   .narrow.left.first
     %h2 Drives and Power
   .verynarrow.left.first
@@ -36,7 +50,7 @@
       %p
         %label Power
         %select.trigger{ :name => "ship[power]" }
-          = power_select(8)
+          = power_select(6)
       %p
         %label{ :for => 'ship_jumpdrive' } Jump Drive
         %select.trigger{ :name => "ship[jumpdrive]" }

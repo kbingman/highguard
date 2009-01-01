@@ -10,19 +10,17 @@ class Ship
   property :tonnage,        Integer
   property :tech_level,     Integer
   property :staterooms,     Integer
+  property :troops,         Integer
   property :jumpdrive,      Integer
   property :thrust,         Integer
   property :power,          Integer
-  property :price,          Integer
-  property :armor_rating,   Integer 
-  property :troops,         Integer
-  
+  property :armor_rating,   Integer
+
   property :created_at,     DateTime
   property :updated_at,     DateTime
   
   belongs_to :configuration
   belongs_to :armor
-  
   belongs_to :computer
   
   has n, :bays
@@ -92,30 +90,48 @@ class Ship
   end
   
   def thrust_tonnage
-    thrust ? ((thrust * 3)-1) * 0.01 * tonnage : 0
+    case 
+      when thrust == 1 : percentage = 1
+      when thrust == 2 : percentage = 1.25
+      when thrust == 3 : percentage = 1.5
+      when thrust == 4 : percentage = 1.75
+      when thrust == 5 : percentage = 2.5
+      when thrust == 6 : percentage = 3.25
+    else
+      percentage = 0
+    end
+    thrust ? percentage * 0.01 * tonnage : 0
   end
   
   def thrust_price
-    case
-      when thrust == 1 : modifier = 1.5
-      when thrust == 2 : modifier = 0.7
-      when thrust >  2 : modifier = 0.5
-    end
-    modifier ? modifier * thrust_tonnage : 0
+    thrust ? 0.5 * thrust_tonnage : 0
   end
   
   def powerplant_tonnage
     case 
-      when tech_level == 7 || tech_level == 8 : percentage = 0.04
-      when tech_level >= 9 && tech_level <= 12  : percentage = 0.03
-      when tech_level >= 13 && tech_level <= 14 : percentage = 0.02
-      when tech_level == 15 : percentage = 0.01
+      when power == 1 : percentage = 1.5
+      when power == 2 : percentage = 2
+      when power == 3 : percentage = 2.5
+      when power == 4 : percentage = 3
+      when power == 5 : percentage = 4
+      when power == 6 : percentage = 5
+    else
+      percentage = 0    
     end
-    power ? (power * percentage * tonnage) : 0
+    case 
+      when tech_level >= 8 && tech_level <= 10  : modifier = 1.25
+      when tech_level >= 11 && tech_level <= 14 : modifier = 1
+      when tech_level == 15 : modifier = 0.75
+    end
+    power ? (percentage * 0.01 * modifier * tonnage) : 0
   end
   
   def powerplant_price
-    power ? 4 * powerplant_tonnage : 0
+    case 
+      when tech_level >= 8 && tech_level <= 10 : modifier = 2
+      when tech_level > 11 : modifier = 2.5
+    end
+    power ? powerplant_tonnage * modifier : 0
   end
   
   def powerplant_fuel
@@ -136,7 +152,8 @@ class Ship
     
   def bridge
     bridge = tonnage * 0.02
-    (bridge > 20) ? bridge : 20
+    min = tonnage >= 200 ? 20 : 10
+    (bridge > 20) ? bridge : min
   end
   
   def bridge_price
@@ -236,7 +253,7 @@ class Ship
   end
   
   def engineering_crew
-    ((jump_tonnage + thrust_tonnage + thrust_tonnage)/100).to_i
+    ((jump_tonnage + thrust_tonnage + powerplant_tonnage)/100).to_i
   end
   
   def gunnery_crew

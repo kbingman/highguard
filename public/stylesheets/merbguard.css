@@ -84,11 +84,8 @@ h2 {
   float: right;
   display: none; }
 
-#weapons select {
-  width: 104px;
-  margin: 0 4px 0 0; }
-#weapons input.text {
-  width: 3em; }
+#weapons select.number {
+  margin: 0 0 0 18px; }
 
 table {
   width: 100%; }
@@ -146,8 +143,9 @@ form input.title {
   width: 620px;
   font-size: 24px; }
 form input.number {
-  width: 50px;
-  text-align: right; }
+  width: 27px; }
+form input.add {
+  margin: 0 0 -2px 4px; }
 form textarea {
   border: 1px solid #888;
   height: 38px;
@@ -156,7 +154,7 @@ form textarea {
 form select {
   width: 140px; }
   form select.number {
-    width: 60px; }
+    width: 84px; }
 
 ul {
   list-style: none;

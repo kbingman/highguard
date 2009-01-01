@@ -84,12 +84,11 @@ h2
   :display none
   
 #weapons
-  select
-    :width 104px
-    :margin 0 4px 0 0
-  input.text
-    :width 3em
-
+  / select
+  /   :width 104px
+  /   :margin 0 4px 0 0
+  select.number
+    :margin 0 0 0 18px
 
 table 
   :width 100%
@@ -148,9 +147,12 @@ form
       :padding 2px
       :width 620px
       :font-size 24px
-    &.number 
-      :width 50px
-      :text-align right
+    &.number
+      :width 27px
+    &.add
+      :margin 0 0 -2px 4px
+      
+      
   textarea 
     :border 1px solid #888
     :height 38px
@@ -159,7 +161,7 @@ form
   select 
     :width 140px
     &.number 
-      :width 60px
+      :width 84px
       
 ul 
   :list-style none
