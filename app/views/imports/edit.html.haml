@@ -1,0 +1,15 @@
+%h1
+  Imports controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/imports/edit.html.erb
+= error_messages_for @import
+
+= form_for(@import, :action => url(:import, @import)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:import, @import)
+|
+= link_to 'Back', url(:imports)

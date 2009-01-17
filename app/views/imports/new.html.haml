@@ -1,0 +1,13 @@
+%h1 Imports controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/imports/new.html.erb
+
+= error_messages_for @import
+
+= form_for(@import, :action => url(:imports) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:imports)

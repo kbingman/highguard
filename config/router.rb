@@ -27,6 +27,7 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+  resources :imports
   resources :barbettes
   resources :bays
   resources :turrets

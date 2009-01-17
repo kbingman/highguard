@@ -1,5 +1,3 @@
-require 'prawn'
-
 class Ship
   include DataMapper::Resource
   
