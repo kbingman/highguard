@@ -1,0 +1,13 @@
+%h1
+  Imports controller, index action
+
+%table
+  %tr
+  - for import in @imports
+    %tr
+      %td
+        = link_to import.path, url(:import, import)
+      %td
+        = link_to 'Edit', url(:edit_import,  import)
+
+= link_to 'New', url(:new_import)

@@ -1,5 +1,5 @@
 module Merb
-  module BarbettesHelper
+  module ImportsHelper
 
   end
 end # Merb

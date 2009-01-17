@@ -1,0 +1,15 @@
+%h1 Files Remaining    
+#count  
+  = partial :count, :format => 'html' 
+    
+  
+= form_for(@import, :action => url(:import, @import)) do    
+  
+  %p  
+    = hidden_field :path, :value => "#{@import.path}"
+  %p
+    = submit "Start", :id => "start" 
+
+= link_to 'Edit',  url(:edit_import,  @import)
+|
+= link_to 'Back', url(:imports)

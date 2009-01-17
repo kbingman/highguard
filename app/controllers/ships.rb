@@ -8,22 +8,24 @@ class Ships < Application
   end
 
   def show(id)
-    provides :html, :pdf, :text
+    provides :html,:text
     @ship = Ship.get(id)
     @title = @ship.name
-    raise NotFound unless @ship
- 
-    case content_type 
-    when :pdf
-      pdf = Prawn::Document.new do
-        font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
-        text "tesr" * 20
-      end
-      # send_file pdf, :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
-      send_data pdf.render, :filename => "#{@ship.name}.pdf", :type => 'application/pdf', :disposition => 'inline'
-    else 
-      display @ship
-    end
+    raise NotFound unless @ship 
+    
+    display @ship 
+    
+    # case content_type 
+    # when :pdf
+    #   pdf = Prawn::Document.new do
+    #     font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
+    #     text "tesr" * 20
+    #   end
+    #   # send_file pdf, :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
+    #   send_data pdf.render, :filename => "#{@ship.name}.pdf", :type => 'application/pdf', :disposition => 'inline'
+    # else 
+    #   display @ship
+    # end
     
   end
 

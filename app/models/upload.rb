@@ -26,7 +26,8 @@ class Upload
   def process(temp,target)
     extname = File.extname(target) 
     basename = File.basename(target, '.*') 
-    self.filename = "#{basename}#{extname}"
+    self.filename = "#{basename}#{extname}"   
+    self.file_size = File.size(temp)
     self.save
         
     # Copy the file to the destination 

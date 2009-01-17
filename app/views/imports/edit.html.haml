@@ -1,0 +1,14 @@
+%h1
+  Imports controller, edit action
+
+= error_messages_for @import
+
+= form_for(@import, :action => url(:import, @import)) do
+  %p  
+    = hidden_field :path, :value => "#{@import.path}"
+  %p
+    = submit "Continue"
+
+= link_to 'Show', url(:import, @import)
+|
+= link_to 'Back', url(:imports)
