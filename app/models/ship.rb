@@ -241,11 +241,11 @@ class Ship
   end
   
   def available_turrets
-    (tonnage / 100) -total_bays - total_barbettes - total_turrets
+    available_hardpoints  
   end
   
   def available_barbettes
-    (tonnage / 100) -total_bays - total_barbettes - total_turrets
+    available_hardpoints
   end
   
   def command_crew
@@ -289,6 +289,19 @@ class Ship
     fire_control +
     turret_tonnage +
     armor_tonnage
+  end
+  
+  def cargo
+    tonnage - subtotal_tonnage
+  end
+  
+  def to_pdf
+    ship = self
+    Prawn::Document.new do
+      font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
+      text "#{ship.name}"
+      text "#{ship.tonnage} Tons"
+    end.render
   end
   
   private

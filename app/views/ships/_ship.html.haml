@@ -158,3 +158,13 @@
         %span MCr
         = commify(@ship.total_price)
         
+  %tr 
+    %td.label{ :colspan => "2" }
+      %strong Remaining (Cargo)
+    %td.tonnage
+      %strong 
+        = commify(remaining_tonnage(@ship.cargo))
+        Tons
+    %td.price
+
+        

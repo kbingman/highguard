@@ -13,7 +13,7 @@ body {
 
 .error {
   width: 100%;
-  border: 1px solid red; }
+  color: red; }
 
 .left {
   float: left; }

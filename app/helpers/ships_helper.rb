@@ -106,6 +106,14 @@ module Merb
       result
     end
     
+    def ammunition_select
+      result = ''
+      Ammunition.all.each do |ammo|
+        result += "<option>#{ammo.type}</option>\n" 
+      end
+      result
+    end
+    
     def computer_select
       result = ''
       Computer.all.each do |computer|
@@ -113,6 +121,10 @@ module Merb
         result += "<option value='#{computer.id}'#{selected}>#{computer.name}</option>" unless computer.jump_minimum < @ship.jumpdrive
       end
       result
+    end
+    
+    def remaining_tonnage(cargo)
+      cargo < 0 ? "<span class='error'>#{@ship.cargo}</span>" : cargo
     end
     
   end

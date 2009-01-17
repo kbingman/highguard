@@ -5,18 +5,24 @@
   %thead
     %tr
       %th Class Name
+      %th.configuration Configuration
       %th.tonnage Tonnage
+      
       %th Drives
+      %th Price
       %th{ :colspan => "2" } Modify
   %tbody
     - @ships.each do |ship|
       %tr
-        %td
-          = link_to ship.name, url(:ship, ship)
+        %td= link_to ship.name, url(:edit_ship, ship)
+        %td= ship.configuration.name
         %td.tonnage= ship.tonnage
         %td= "J#{ship.jumpdrive} M#{ship.thrust} P#{ship.power}"
-        %td
-          = link_to 'edit', url(:edit_ship, ship)
+        %td.price
+          %span
+            MCr
+          = commify(ship.total_price)
+        %td= link_to 'edit', url(:edit_ship, ship)
         %td
           = link_to "delete", url(:delete_ship, ship), :class => 'delete', :method => 'delete'
 

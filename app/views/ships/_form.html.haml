@@ -19,9 +19,7 @@
     = partial :weapons_form, :format => :html, :weapon_type => 'turret'
     %label Ammunition
     %select
-      %option Railgun
-      %option Torpedo
-      %option Missle
+      = ammunition_select
     %select.number
       %option 10
       %option 20

@@ -12,15 +12,18 @@ class Ships < Application
     @ship = Ship.get(id)
     @title = @ship.name
     raise NotFound unless @ship
- 
+    # display @ship
+    
     case content_type 
     when :pdf
-      pdf = Prawn::Document.new do
-        font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
-        text "tesr" * 20
-      end
-      # send_file pdf, :filename => "#{@ship.name}.pdf", :type => 'application/pdf'
-      send_data pdf.render, :filename => "#{@ship.name}.pdf", :type => 'application/pdf', :disposition => 'inline'
+      # ship = @ship
+      # pdf = Prawn::Document.new do
+      #   font "#{Prawn::BASEDIR}/data/fonts/DejaVuSans.ttf"
+      #   text "#{ship.name}"
+      #   text "#{ship.tonnage} Tons"
+      # end
+      # pdf.render_file "#{Merb.root}/public/#{@ship.name}.pdf"
+      # send_data @ship.to_pdf, :file_name => "#{@ship.name}pdf", :type => 'application/pdf', :disposition => 'inline'
     else 
       display @ship
     end
@@ -115,6 +118,8 @@ class Ships < Application
         else
           @weapon_type.number =  @weapon_type.number + number 
           @weapon_type.save
+          # Reloads the model because lazy loading does not get the new values for the 
+          # associated model.
           @ship = Ship.get(@ship.id)
         end
       end   
