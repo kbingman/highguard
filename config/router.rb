@@ -27,20 +27,14 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
-  resources :imports
-  resources :barbettes
-  resources :bays
-  resources :turrets
+  
+  resources :imports 
   resources :weapons
   resources :computers
   resources :configurations
   resources :ships
-  match( 
-    :path => '/uploads/import', :method => 'post' 
-  ).to( 
-    :controller => 'uploads', :action =>'import'
-  ) 
-  resources :uploads 
+  resources :uploads  
+    
   
   
   # RESTful routes

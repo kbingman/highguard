@@ -184,3 +184,15 @@ ul {
 
 .clear {
   clear: both; }
+
+#progress_bar {
+  width: 100%;
+  background: #eee;
+  height: 4px;
+  margin: 0 0 14px; }
+  #progress_bar #progress {
+    height: 4px;
+    background: red; }
+
+.percentage {
+  color: silver; }

@@ -1,13 +1,14 @@
 %h1 Imports controller, new action
 
-%p 
-  Edit this file in 
-  %tt app/views/imports/new.html.erb
-
 = error_messages_for @import
 
-= form_for(@import, :action => url(:imports) ) do
+= form_for(@import, :action => url(:imports) ) do    
+  
+  %p  
+    %label Path:       
+    = @path
+    = hidden_field :path, :value => ""
   %p
-    = submit "Create"
+    = submit "Start"
 
 = link_to 'Back', url(:imports)

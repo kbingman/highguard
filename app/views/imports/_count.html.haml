@@ -1,0 +1,15 @@
+#progress_bar
+  #progress{ :style => "width: #{@import.percentage}%" }
+
+- unless @size == 0   
+  %span#size   
+    = @size  
+  of
+  %span#total_count
+    = @import.total_size  
+  files remaining     
+  %span.percentage
+    = "(#{@import.percentage}%)"    
+- else 
+  %span#size
+    There are no files to import

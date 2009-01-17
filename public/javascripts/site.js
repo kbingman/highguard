@@ -3,6 +3,7 @@
 
 $(document).ready(function(){
   
+  // Basically all this makes the form auto update itself, so that all the various changes are immediately visible
   $('#info form .trigger')
     .livequery('change', function(){ 
       var $form = $('#info form');
@@ -35,20 +36,45 @@ $(document).ready(function(){
     parent.find('div.edit').toggle();
   });
   
+  // Fancy effects for the thumbnails
   $('ul a')
     .css({opacity:0.5})
     .hover(
       function(){
-       $(this).fadeTo('fast', 1.0);
+       $(this).stop().fadeTo('fast', 1.0);
       },
       function(){
-       $(this).fadeTo('slow', 0.5);
+       $(this).stop().fadeTo('slow', 0.5);
       }
-    );
+    );  
   
+  // Just calls the progress bar function when the page is loaded 
+  // progressBar();
+  $('input#start').click(function(){   
+    progressBar();    
+    return false;   
+  });
+
 });
 
 function response(responseText){
   alert(responseText)
+}     
+
+// The progress bar for the uploads  
+function progressBar(){
+  var size = $('span#size').text();  
+  var $uploadForm = $('form'); 
+  url = $uploadForm.attr('action') + '.js';  
+  // alert(url)
+  if(size && size >= 0){      
+    $uploadForm.ajaxSubmit({ 
+      url:    url,
+      target: '#count'
+    });  
+  }else{
+    // Redirects the page when the upload has finished 
+    window.location = "/uploads"
+  }
 }
 

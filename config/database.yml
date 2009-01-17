@@ -37,7 +37,7 @@ test:
 
 production:
   <<:       *defaults
-  database: golb_production
+  database: highguard_merb_dev
 
   # repositories:
   #   repo1:
