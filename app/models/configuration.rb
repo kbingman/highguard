@@ -6,8 +6,5 @@ class Configuration
   property :streamlined,    String
   property :modifier,       Float
   
-  property :created_at,     DateTime
-  property :updated_at,     DateTime
-  
   has n, :ships
 end

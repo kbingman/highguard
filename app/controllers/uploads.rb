@@ -42,6 +42,7 @@ class Uploads < Application
       upload = Upload.new
       filename = File.basename(file)
       upload.filename = filename
+      upload.size = File.size(filename)
       upload.process(file,filename)
     end
     render

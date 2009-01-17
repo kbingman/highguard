@@ -12,6 +12,10 @@
     %script{ :src => '/javascripts/site.js' }
   %body
     .container
+      #header
+        = link_to 'Index', url(:ships)
+        |
+        = link_to 'New Ship',url(:new_ship)
       #content
         - if !message[:notice].nil?
           .notice

@@ -24,7 +24,7 @@ $(document).ready(function(){
   $('a.delete').livequery('click',function(){
     var url = $(this).attr('href').split('/');
     var deleteUrl = '/' + url[1] + '/' + url[2];
-    alert('are you sure you want to remove this?')
+    confirm('Are you sure you want to remove this?');
     $.post(deleteUrl,{ _method: "DELETE" });
     $(this).parents('tr').hide();
     return false;

@@ -3,9 +3,6 @@ require 'prawn'
 class Ship
   include DataMapper::Resource
   
-  before :save, :check_drives
-  before :save, :check_armor
-
   property :id,             Serial # primary serial key
   property :name,           String
   property :description,    Text
@@ -26,13 +23,17 @@ class Ship
   belongs_to :configuration
   belongs_to :armor
   
-  # belongs_to :computer
+  belongs_to :computer
   
   has n, :bays
   has n, :turrets
   has n, :barbettes
   
   validates_present :name
+  validates_with_method :check_computer
+  
+  before :save, :check_drives
+  before :save, :check_armor
   
   def armor_tonnage
     if self.armor
@@ -254,6 +255,7 @@ class Ship
     thrust_price + 
     powerplant_price +
     bridge_price +
+    self.computer.price +
     stateroom_price
   end
   
@@ -282,10 +284,27 @@ class Ship
        self.power = required_power unless power > required_power
      end
    end
+   
    def check_armor
      if armor_id && armor_rating.nil?
        self.armor_rating = 1
      end
    end
+   
+   def check_computer
+     if jumpdrive.nil? or jumpdrive == 0
+       return true 
+     elsif self.computer.jump_minimum >= self.jumpdrive 
+       return true
+     else
+       [false, "You computer does not support the jump drive."]
+     end
+   end
+   
+   # def setup_defaults
+   #   if self.computer.nil?
+   #     self.computer = Computer.first
+   #   end
+   # end
 
 end
