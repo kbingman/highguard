@@ -3,7 +3,7 @@
 %ul
   - @uploads.each do |upload|
     %li
-      = link_to upload.filename, url(:upload, upload), :style => "background-image: url(#{upload.url('thumb')});"
+      = link_to upload.filename, upload.url('display'), :style => "background-image: url(#{upload.url('thumb')});"
       
 .clear
 

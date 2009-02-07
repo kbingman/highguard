@@ -105,6 +105,8 @@ class Ships < Application
         available_whatevers = @ship.send("available_#{weapon_type.pluralize}") 
         number = number > available_whatevers ? available_whatevers : number
         return if number == 0
+        
+        # The very wordy equivalent to Constantize
         klass = Object.full_const_get(weapon_type.capitalize)
 
         @weapon_type = klass.first(:ship_id => @ship.id, 

@@ -6,7 +6,9 @@
   - for import in @imports
     %tr
       %td
-        = link_to import.path, url(:import, import)
+        = link_to import.folder, url(:import, import)
+        &ndash;
+        = import.imported
       %td
         = link_to 'Edit', url(:edit_import,  import)
 

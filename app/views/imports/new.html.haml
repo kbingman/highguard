@@ -3,11 +3,11 @@
 = error_messages_for @import
 
 = form_for(@import, :action => url(:imports) ) do    
-  
-  %p  
-    %label Path:       
-    = @path
-    = hidden_field :path, :value => ""
+  - if @paths 
+    %p  
+      %label Path:       
+      = select :path, :collection => @paths.collect {|p| [ p, File.basename(p) ] }  
+
   %p
     = submit "Start"
 

@@ -67,7 +67,7 @@ function progressBar(){
   var $uploadForm = $('form'); 
   url = $uploadForm.attr('action') + '.js';  
   // alert(url)
-  if(size && size >= 0){      
+  if(size && size > 0){      
     $uploadForm.ajaxSubmit({ 
       url:    url,
       target: '#count'

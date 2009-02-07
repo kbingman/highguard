@@ -1,11 +1,14 @@
-%h1 Files Remaining    
+%h1 
+  Files Remaining in
+  = @import.folder
+  
 #count  
   = partial :count, :format => 'html' 
     
   
 = form_for(@import, :action => url(:import, @import)) do    
   
-  %p  
+  %p
     = hidden_field :path, :value => "#{@import.path}"
   %p
     = submit "Start", :id => "start" 
